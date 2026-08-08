@@ -1,422 +1,238 @@
 # BACKEND ARCHITECT NEURAL
 
-<p align="center">
-  <a href="https://github.com/mobinhasanghasemi/backend-skill">
-    <img src="https://img.shields.io/badge/GitHub-Repo-blue?logo=github" alt="GitHub">
-  </a>
-  <a href="LICENSE">
-    <img src="https://img.shields.io/badge/License-MIT-green" alt="MIT License">
-  </a>
-  <img src="https://img.shields.io/badge/Status-Active-success" alt="Status Active">
-  <img src="https://img.shields.io/badge/Last%20Updated-2026--08-brightgreen" alt="Last Updated">
-</p>
+**An AI-native backend engineering knowledge base.**
 
-An **AI-readable artificial engineering brain for backend architecture**. Knowledge is stored as interconnected Markdown **neurons**. An AI dynamically routes through the graph, activates only the relevant neurons, reasons causally, checks security / performance / reliability, and produces production-grade decisions with reasoning traces.
+Organized as a neural knowledge graph — every file is a **neuron** with a defined purpose, activation conditions, and causal relationships. Built for AI agents (Claude, ChatGPT, Cursor, Codex, MiMoCode, and others) to dynamically activate only the relevant knowledge, apply quality gates, and produce production-grade decisions with reasoning traces.
 
-This repository is a **pure knowledge pack** — no runtime dependencies, no build step for the core. It is designed both for **direct consumption by AI agents** (Claude, ChatGPT, Codex, MiMoCode, …) and for **human study** as a reference library.
-
-**Repository:** `https://github.com/mobinhasanghasemi/backend-skill`
+```
+Repository: https://github.com/mobinhasanghasemi/backend-skill
+```
 
 ---
 
 ## Table of Contents
 
-- [Repository](#repository)
-- [What is this project?](#what-is-this-project)
-- [Quick Start](#quick-start)
-  - [Option A — Use it as an Agent Skill (recommended)](#option-a--use-it-as-an-agent-skill-recommended)
-  - [Option B — Read it yourself](#option-b--read-it-yourself)
-- [Deployment Guide — Host it as a Docs Site](#deployment-guide--host-it-as-a-docs-site)
-  - [Option 1: GitHub Pages (zero-cost, simplest)](#option-1-github-pages-zero-cost-simplest)
-  - [Option 2: Vercel](#option-2-vercel)
-  - [Option 3: MkDocs (professional docs site)](#option-3-mkdocs-professional-docs-site)
-  - [Option 4: Docusaurus](#option-4-docusaurus)
-- [Directory Map](#directory-map)
-- [Core Protocols & Engines](#core-protocols--engines)
-- [Knowledge Domains](#knowledge-domains)
-- [Playbooks](#playbooks)
-- [Checklists](#checklists)
-- [Integrity Tools](#integrity-tools)
-- [Contributing](#contributing)
+- [What is this?](#what-is-this)
+- [How it Works — Neural Architecture](#how-it-works--neural-architecture)
+  - [Cognitive Pipeline](#cognitive-pipeline)
+  - [Routing & Activation](#routing--activation)
+  - [The 4 Quality Engines](#the-4-quality-engines)
+  - [Evidence Protocol](#evidence-protocol)
+  - [Code Tiers](#code-tiers)
+  - [Architecture Linter](#architecture-linter)
+- [What's Inside](#whats-inside)
+  - [Knowledge Domains](#knowledge-domains)
+  - [Protocols & Engines](#protocols--engines)
+  - [Brain](#brain)
+  - [Playbooks](#playbooks)
+  - [Checklists](#checklists)
+  - [Integrity Tools](#integrity-tools)
+- [Installation](#installation)
+- [How the Agent Should Use It](#how-the-agent-should-use-it)
+- [Strengths & Current Limitations](#strengths--current-limitations)
 - [License](#license)
 
 ---
 
-## Repository
+## What is this?
 
-```
-https://github.com/mobinhasanghasemi/backend-skill
-```
+This is a **pure Markdown knowledge base** with zero dependencies. It's called "Neural" because it's modeled as a brain:
 
-Clone it:
+- **Neurons** = individual Markdown files, each containing a focused piece of backend knowledge.
+- **Root neurons** (`ROOT.md`) = routers that tell the agent which child neurons to read.
+- **Graph** = explicit connections between neurons (`depends_on`, `influences`, `conflicts_with`, etc.).
+- **Engines** = always-on quality layers that filter every decision through security, simplicity, performance, and reliability lenses.
+- **Evidence** = every claim carries a confidence label (VERIFIED / SUPPORTED / INFERRED / EXPERIMENTAL / UNCERTAIN), preventing hallucination.
 
-```bash
-git clone https://github.com/mobinhasanghasemi/backend-skill.git
-cd backend-skill
-```
-
----
-
-## What is this project?
-
-**Backend Architect Neural** is a structured backend-engineering knowledge base organized as a neural network of Markdown files. Every file is a **neuron** that defines its own *purpose*, *activation conditions*, *relationships*, and *decision rules*. The project covers:
-
-- **25+ knowledge domains** — from Django, PostgreSQL, and Redis to security, reliability, and AI backends.
-- **150+ neuron files** with a strict schema (`NEURON_PROTOCOL.md`).
-- **16 incident playbooks** for production troubleshooting.
-- **4 checklists** — architecture, security, code review, and release.
-- **3 integrity tools** — link checker, neuron validator, and evidence freshness reporter.
-- **Decision engines** — security, performance, reliability, and simplicity governors.
-
-The core is **language-agnostic for AI consumption**: it works with any agent that can read Markdown and follow the routing rules in `NEURAL_ROUTING.md`.
+The agent never reads the whole tree. It follows the graph, activating only the neurons relevant to the question.
 
 ---
 
-## Quick Start
+## How it Works — Neural Architecture
 
-### Option A — Use it as an Agent Skill (recommended)
+### Cognitive Pipeline
 
-Give your agent the following context. The agent will read `SKILL.md` as its entry point, then activate only the neurons relevant to your question.
+When the agent receives a question, it follows this pipeline (defined in `BRAIN.md`):
 
-**Prompt to give your agent:**
-
-> You have access to a backend-engineering knowledge base. The source is this GitHub repository:
->
-> `https://github.com/mobinhasanghasemi/backend-skill`
->
-> **Install/load instructions:**
-> 1. Clone the repo: `git clone https://github.com/mobinhasanghasemi/backend-skill.git`
-> 2. Read `SKILL.md` first — it is the activation surface and tells you how to behave.
-> 3. Read `BRAIN.md` once — it is the central cognitive controller (the meta-chain).
-> 4. For any question, follow `NEURAL_ROUTING.md` to decide which domain to activate.
-> 5. Load ONLY the matching domain `ROOT.md` (e.g. `databases/ROOT.md`), then the best-matching child neuron. Never load an entire domain tree.
-> 6. Apply the engines by default: `SECURITY_GUARDIAN.md`, `SIMPLICITY_GOVERNOR.md`, `PERFORMANCE_ENGINE.md`, `RELIABILITY_ENGINE.md`.
-> 7. Label every factual claim with an evidence class (VERIFIED / SUPPORTED / INFERRED / EXPERIMENTAL / UNCERTAIN) per `EVIDENCE_PROTOCOL.md`.
-> 8. For production incidents, pull the matching playbook from `playbooks/`.
-
-You can phrase it as a one-liner to your agent:
-
-> Load the backend skill from `https://github.com/mobinhasanghasemi/backend-skill.git` (clone it, read `SKILL.md` + `BRAIN.md`, then follow `NEURAL_ROUTING.md` to answer my question).
-
-### Option B — Read it yourself
-
-1. Start at `BRAIN.md` — the cognitive controller. It explains the pipeline, activation states, and reasoning trace.
-2. Pick a domain from the table below and open its `ROOT.md` for the routing map.
-3. Drill into the specific neuron files you need.
-
-```text
-How to route your question:
-  "database / schema / SQL"        → databases/ROOT.md
-  "API / endpoint / versioning"    → api/ROOT.md
-  "security / auth / tokens"       → security/ROOT.md
-  "slow / latency / profiling"     → performance/ROOT.md
-  "Django / DRF / migrations"      → django/ROOT.md
-  "docker / k8s / deploy"          → infrastructure/ROOT.md
-  "reliability / RPO / disaster"   → reliability/ROOT.md
-  "chronic incident"               → playbooks/
 ```
+USER INPUT
+    │
+    ▼
+PERCEPTION              ← parse problem, language, scope
+    ▼
+PROBLEM CLASSIFICATION  ← what kind of problem is this?
+    ▼
+CONSTRAINT EXTRACTION   ← scale, budget, team, compliance, deadlines
+    ▼
+RISK DETECTION          ← early suspicions (security, reliability, latency)
+    ▼
+DOMAIN DETECTION        ← which regions fire?
+    ▼
+ROOT NEURON ACTIVATION  ← read domain ROOT.md only
+    ▼
+CHILD NEURON ACTIVATION ← read only relevant children
+    ▼
+CROSS-DOMAIN TRAVERSAL  ← follow Connected Neurons
+    ▼
+CAUSAL REASONING        ← build cause→effect chains (positive AND negative)
+    ▼
+CANDIDATE GENERATION    ← at least 2 options, rarely more than 3
+    ▼
+TRADE-OFF ANALYSIS      ← complexity/cost/security/performance/ops
+    ▼
+RISK ANALYSIS           ← failure propagation, feedback loops
+    ▼
+SECURITY REVIEW         ← SECURITY_GUARDIAN.md
+    ▼
+PERFORMANCE REVIEW      ← PERFORMANCE_ENGINE.md
+    ▼
+RELIABILITY REVIEW      ← RELIABILITY_ENGINE.md
+    ▼
+SIMPLICITY GOVERNOR     ← does complexity justify itself?
+    ▼
+VALIDATION              ← check against ARCHITECTURE_LINTER.md
+    ▼
+FINAL ARCHITECTURE      ← recommendation + reasoning trace + risks
+    ▼
+OUTPUT                  ← explain EXACTLY why this decision
+```
+
+### Routing & Activation
+
+Defined in `NEURAL_ROUTING.md` and `brain/routing.md`. The agent decides which domain to activate based on keyword matching:
+
+| Input | Domain activated |
+|-------|-----------------|
+| "database", "schema", "SQL" | `databases/ROOT.md` |
+| "API", "endpoint", "versioning" | `api/ROOT.md` |
+| "security", "auth", "token" | `security/ROOT.md` |
+| "slow", "latency", "profiling" | `performance/ROOT.md` |
+| "Django", "DRF", "migration" | `django/ROOT.md` |
+| "docker", "k8s", "deploy" | `infrastructure/ROOT.md` |
+| "reliability", "RPO", "disaster" | `reliability/ROOT.md` |
+| "LLM", "RAG", "agent" | `ai-backends/ROOT.md` |
+
+Three attention states: **ACTIVE** (read fully), **SUPPORTING** (read relevant sections), **DORMANT** (skip). The agent never exceeds ~2 active + ~4 supporting domains.
+
+### The 4 Quality Engines
+
+These are always-on and filter every decision:
+
+| Engine | File | Function |
+|--------|------|----------|
+| **Security** | `SECURITY_GUARDIAN.md` | Threat modeling, authN/authZ, data protection, OWASP, compliance |
+| **Simplicity** | `SIMPLICITY_GOVERNOR.md` | Rejects unearned complexity. Default positions: monolith, single DB, no cache until measured |
+| **Performance** | `PERFORMANCE_ENGINE.md` | Measure first, then optimize. No optimization without profiling |
+| **Reliability** | `RELIABILITY_ENGINE.md` | SLOs, error budgets, failure propagation, RPO/RTO, backup drills |
+
+### Evidence Protocol
+
+Every factual claim in the knowledge base carries one of these labels (defined in `EVIDENCE_PROTOCOL.md`):
+
+| Class | Meaning |
+|-------|---------|
+| **VERIFIED** | Confirmed from an official authoritative source |
+| **SUPPORTED** | Strong corroboration from multiple credible sources |
+| **INFERRED** | Derived from established principles + reasoning |
+| **EXPERIMENTAL** | New, not production-proven (lab/benchmark only) |
+| **UNCERTAIN** | Can't verify, contradictory, or unknown |
+| **OUTDATED** | Was once true, superseded by version changes |
+| **DEPRECATED** | Officially no longer recommended |
+
+This prevents the agent from presenting unverified or hallucinated information as fact.
+
+### Code Tiers
+
+Practical neurons include a 4-tier code ladder (defined in `CODE_TIERS.md`):
+
+| Tier | Label | Purpose |
+|------|-------|---------|
+| ❌ | Bad | The common misstep — realistic, shows the failure it causes |
+| ✅ | Good | Minimal correct approach |
+| ⚡ | Better | One meaningful quality upgrade (perf/security/observability) |
+| 🏆 | Excellent | Production-grade — measured, bounded, observable, fault-tolerant |
+
+The agent picks the appropriate tier based on context (a toy system may be fine with ✅ or even ❌).
+
+### Architecture Linter
+
+`ARCHITECTURE_LINTER.md` defines 35 machine-checkable anti-pattern rules (ARCH001–ARCH035):
+
+| Severity | Approx. count | Examples |
+|----------|---------------|---------|
+| CRITICAL | 5 | Secrets in code (ARCH017), SQL injection (ARCH031), cross-tenant cache leak (ARCH025) |
+| HIGH | 14 | No timeout (ARCH001), no idempotency (ARCH002), no invalidation strategy (ARCH003) |
+| MED | 15 | N+1 (ARCH007), no pagination (ARCH030), no circuit breaker (ARCH032) |
+| LOW | 1 | SELECT * (ARCH035) |
 
 ---
 
-## Deployment Guide — Host it as a Docs Site
+## What's Inside
 
-The core is plain Markdown, so it can be hosted anywhere. Below are four ways to turn it into a browsable website.
+### Knowledge Domains
 
-### Option 1: GitHub Pages (zero-cost, simplest)
+| Directory | Covers | Files |
+|-----------|--------|-------|
+| `architecture/` | Patterns, anti-patterns, evolution, system design | ~5 |
+| `api/` | REST, GraphQL, gRPC, WebSocket, webhooks, versioning, errors, pagination, idempotency, rate-limiting | 12 |
+| `databases/` | PostgreSQL, MySQL, NoSQL, query optimization, data modeling, indexing | ~10 |
+| `security/` | AuthN, authZ, OWASP, cryptography, secrets, threat modeling, compliance | 9 |
+| `performance/` | Profiling, latency optimization, saturation & scaling | 4 |
+| `reliability/` | SLOs, backups, deployment, incident response, chaos testing | 6 |
+| `observability/` | Tracing, logs, metrics, OpenTelemetry | ~2 |
+| `distributed-systems/` | Timeouts, circuit breaker, saga, outbox, consensus, distributed locks | 6 |
+| `messaging/` | Celery, Kafka, queues | 3 |
+| `django/` | ORM, DRF, migrations, settings, caching, admin | 6 |
+| `python/` | Async, typing, memory, GC, threads, packaging, web frameworks | 6 |
+| `infrastructure/` | Containers, Kubernetes | 2 |
+| `devops/` | CI/CD, release engineering | 2 |
+| `caching/` | Strategies, invalidation | 3 |
+| `testing/` | Unit, integration, contract, e2e, load, security | 6 |
+| `ai-backends/` | RAG, LLM calls, agents, evals, semantic caching | 6 |
+| `data-engineering/` | Batch, streaming, warehouse | 4 |
+| `multi-tenancy/` | SaaS tenant isolation models | ~1 |
+| `storage/` | Object storage, files, signed URLs | 2 |
 
-You have two paths: **live rendering** of the Markdown (fastest) or a **real docs site** (see Option 3/4).
+> File counts are approximate; the repository continues to evolve.
 
-#### Path A — Auto-deploy with GitHub Actions (recommended)
-
-Create `.github/workflows/deploy.yml` in the repo:
-
-```yaml
-name: Deploy to GitHub Pages
-
-on:
-  push:
-    branches: [main]
-
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: pages
-  cancel-in-progress: false
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: "."
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
-```
-
-Then:
-
-1. Create the file above at `.github/workflows/deploy.yml`.
-2. Go to the repo → **Settings → Pages** → Source: **GitHub Actions**.
-3. Every push to `main` redeploys automatically.
-4. Your site will be at `https://<username>.github.io/backend-skill/`.
-
-#### Path B — Manual enable
-
-1. Repo → **Settings → Pages**.
-2. Under **Branch**, pick `main` and folder `/ (root)`.
-3. **Save**. The site appears at `https://<username>.github.io/backend-skill/`.
-
-> **Note:** GitHub Pages renders raw Markdown unless you use a generator (MkDocs/Docusaurus). For a polished site, use Option 3 or 4.
-
-### Option 2: Vercel
-
-1. Go to [vercel.com](https://vercel.com) and sign in with GitHub.
-2. **Add New Project** → select the `backend-skill` repo.
-3. Build & Output Settings: Framework Preset → **Other**; leave Output Directory empty.
-4. Click **Deploy**.
-
-### Option 3: MkDocs (professional docs site)
-
-[MkDocs](https://www.mkdocs.org/) turns Markdown into a clean, searchable site.
-
-**Prerequisites:** Python 3.9+ and pip.
-
-```bash
-pip install mkdocs mkdocs-material
-```
-
-Create `mkdocs.yml` in the repo root:
-
-```yaml
-site_name: Backend Architect Neural
-site_description: AI-readable backend engineering knowledge base
-site_author: Mobin Hasanghasemi
-repo_url: https://github.com/mobinhasanghasemi/backend-skill
-repo_name: backend-skill
-edit_uri: edit/main/docs/
-
-theme:
-  name: material
-  language: en
-  features:
-    - navigation.tabs
-    - navigation.sections
-    - navigation.expand
-    - search.highlight
-    - search.suggest
-  palette:
-    - scheme: default
-      primary: indigo
-      accent: indigo
-      toggle:
-        icon: material/brightness-7
-        name: Switch to dark mode
-    - scheme: slate
-      primary: indigo
-      accent: indigo
-      toggle:
-        icon: material/brightness-4
-        name: Switch to light mode
-
-markdown_extensions:
-  - pymdownx.highlight
-  - pymdownx.superfences
-  - pymdownx.tabbed
-  - pymdownx.tasklist
-  - toc:
-      permalink: true
-
-nav:
-  - Home: README.md
-  - Brain:
-      - NEURAL_ROUTING.md
-      - NEURON_PROTOCOL.md
-      - brain/graph.md
-      - brain/domains.md
-  - Architecture: architecture/ROOT.md
-  - API: api/ROOT.md
-  - Databases: databases/ROOT.md
-  - Security: security/ROOT.md
-  - Performance: performance/ROOT.md
-  - Reliability: reliability/ROOT.md
-  - Observability: observability/ROOT.md
-  - Django: django/ROOT.md
-  - Python: python/ROOT.md
-  - Distributed Systems: distributed-systems/ROOT.md
-  - Messaging: messaging/ROOT.md
-  - DevOps: devops/ROOT.md
-  - Infrastructure: infrastructure/ROOT.md
-  - Caching: caching/ROOT.md
-  - Testing: testing/ROOT.md
-  - AI Backends: ai-backends/ROOT.md
-  - Multi-tenancy: multi-tenancy/ROOT.md
-  - Storage: storage/ROOT.md
-  - Data Engineering: data-engineering/ROOT.md
-  - Playbooks: playbooks/
-  - Checklists: checklists/
-  - ADR: adr/
-  - Research: research/index.md
-```
-
-**Build & serve locally:**
-
-```bash
-mkdocs build
-mkdocs serve     # http://localhost:8000
-```
-
-**Deploy to GitHub Pages:**
-
-```bash
-mkdocs gh-deploy
-```
-
-This builds the site to the `gh-pages` branch; GitHub Pages serves it automatically.
-
-### Option 4: Docusaurus
-
-[Docusaurus](https://docusaurus.io/) is a React-based docs generator by Meta.
-
-**Prerequisites:** Node.js 18+.
-
-```bash
-npx create-docusaurus@latest backend-skill-docs classic --typescript
-cd backend-skill-docs
-```
-
-1. Copy (or symlink) the Markdown files into `docs/`.
-2. Edit `docusaurus.config.ts` to set the site title and `url`/`baseUrl`.
-3. Add the nav structure in `sidebars.ts`.
-4. Deploy to GitHub Pages:
-
-```bash
-GIT_USER=<YourGitHubUsername> npm run deploy
-```
-
----
-
-## Directory Map
-
-```text
-backend-skill/
-├── README.md                    # this file — guide + deployment tutorial
-├── SKILL.md                     # agent activation surface (entry point)
-├── BRAIN.md                     # central cognitive controller ("the brain")
-├── LICENSE                      # MIT license
-│
-├── NEURAL_ROUTING.md            # contextual path selection
-├── NEURON_PROTOCOL.md           # neuron contract + relationship types
-├── CODE_TIERS.md                # bad → good → better → excellent ladders
-├── RESEARCH_PROTOCOL.md         # deep-research before creating knowledge
-├── LEARNING_SYSTEM.md           # how the brain saves and grows knowledge
-├── EVIDENCE_PROTOCOL.md         # evidence classification + confidence
-├── MEMORY_PROTOCOL.md           # semantic / episodic / procedural memory
-│
-├── DECISION_ENGINE.md           # decision protocol + conflict resolution
-├── SECURITY_GUARDIAN.md         # cross-cutting security review
-├── PERFORMANCE_ENGINE.md        # evidence-driven performance methodology
-├── RELIABILITY_ENGINE.md        # availability, RPO/RTO, failure propagation
-├── SIMPLICITY_GOVERNOR.md       # complexity justification
-├── ARCHITECTURE_LINTER.md       # 35 architecture anti-pattern rules
-├── VALIDATION_PROTOCOL.md       # quality gates
-├── ARCHITECTURE_GENOME.md       # architecture fingerprint / comparison
-│
-├── brain/                       # graph, routing, activation, memory
-│   └── graph.md, domains.md, relationships.md, routing.md,
-│       activation.md, causal-graph.md, failure-propagation.md,
-│       confidence.md, memory.md, version-awareness.md
-│
-├── architecture/                # patterns, anti-patterns, evolution, system design
-├── api/                         # rest, graphql, grpc, websockets, webhooks, versioning
-├── databases/                   # relational, postgresql, mysql, nosql, optimization
-├── security/                    # authentication, authorization, OWASP, crypto
-├── performance/                 # profiling, latency, saturation
-├── reliability/                 # SLOs, backups, deployment, incident response
-├── observability/               # logs, metrics, tracing
-├── distributed-systems/         # timeouts, circuit breaker, saga, outbox, locks
-├── messaging/                   # celery, kafka, queues
-├── django/                      # orm, drf, migrations, settings, admin
-├── python/                      # async, typing, memory, packaging
-├── infrastructure/              # containers, kubernetes
-├── devops/                      # ci-cd, release engineering
-├── caching/                     # strategies, invalidation
-├── testing/                     # unit, integration, e2e, load, security
-├── ai-backends/                 # rag, llm-calls, agents, evals
-├── data-engineering/            # batch, streaming, warehouse
-├── multi-tenancy/               # SaaS isolation patterns
-├── storage/                     # object storage, files
-├── playbooks/                   # 16 incident runbooks
-├── checklists/                  # architecture, security, code review, release
-├── adr/                         # architecture decision records (template)
-├── research/                    # research log + evidence registry
-├── tools/                       # check_links.py, validate_neurons.py, freshness.py
-├── agents/                      # openai.yaml (agent skill metadata)
-│
-├── .gitattributes
-└── .mimocode/                   # MiMoCode configuration
-```
-
----
-
-## Core Protocols & Engines
+### Protocols & Engines
 
 | File | Purpose |
 |------|---------|
+| `SKILL.md` | Activation surface — the entry point for the agent |
 | `BRAIN.md` | Central cognitive controller — the meta-chain and reasoning trace |
 | `NEURAL_ROUTING.md` | Router — decides which domains activate for a given problem |
 | `NEURON_PROTOCOL.md` | Neuron contract — the standard schema every knowledge file follows |
-| `CODE_TIERS.md` | Code ladder — teaching samples from bad → excellent |
+| `CODE_TIERS.md` | Code ladder — bad → good → better → excellent teaching samples |
 | `DECISION_ENGINE.md` | Decision protocol — candidate evaluation + conflict resolution |
-| `SECURITY_GUARDIAN.md` | Security review engine — applies to every design |
+| `SECURITY_GUARDIAN.md` | Always-on security review engine |
 | `PERFORMANCE_ENGINE.md` | Performance methodology — measure first, then optimize |
 | `RELIABILITY_ENGINE.md` | Availability, RPO/RTO, failure propagation |
 | `SIMPLICITY_GOVERNOR.md` | Rejects unearned complexity |
 | `ARCHITECTURE_LINTER.md` | 35 machine-checkable anti-pattern rules (ARCH001–ARCH035) |
 | `VALIDATION_PROTOCOL.md` | Neuron, research, and answer quality gates |
 | `EVIDENCE_PROTOCOL.md` | Evidence classes (VERIFIED / SUPPORTED / INFERRED / …) |
-| `LEARNING_SYSTEM.md` | How the brain saves and grows knowledge |
+| `LEARNING_SYSTEM.md` | How the brain acquires, verifies, and saves new knowledge |
 | `MEMORY_PROTOCOL.md` | Three memory layers (semantic / episodic / procedural) |
 | `RESEARCH_PROTOCOL.md` | Deep-research discipline before creating knowledge |
 | `ARCHITECTURE_GENOME.md` | Compact, comparable architecture representation |
 
----
+### Brain
 
-## Knowledge Domains
+| File | Purpose |
+|------|---------|
+| `brain/graph.md` | Global neuron graph in Mermaid — the canonical topology |
+| `brain/domains.md` | Domain definitions |
+| `brain/relationships.md` | Relationship types between neurons |
+| `brain/routing.md` | Keyword-to-domain routing tables |
+| `brain/activation.md` | Attention model, activation budget, inhibition registry |
+| `brain/causal-graph.md` | Cause → effect chains (positive and negative) |
+| `brain/failure-propagation.md` | 7 canonical failure cascade models |
+| `brain/confidence.md` | Confidence propagation rules |
+| `brain/memory.md` | Memory management |
+| `brain/version-awareness.md` | Global version matrix (Python 3.14, Django 6.0, PostgreSQL 18, etc.) |
 
-| Domain | Covers |
-|--------|--------|
-| **architecture/** | patterns, anti-patterns, evolution, system design |
-| **api/** | REST, GraphQL, gRPC, WebSocket, webhooks, versioning, errors |
-| **databases/** | PostgreSQL, MySQL, NoSQL, optimization, data modeling |
-| **security/** | authN, authZ, OWASP Top 10, cryptography, compliance |
-| **performance/** | profiling, latency optimization, scaling |
-| **reliability/** | SLOs, backups, recovery, incident response |
-| **observability/** | tracing, logs, metrics, OpenTelemetry |
-| **distributed-systems/** | timeouts, circuit breaker, saga, outbox, consensus, locks |
-| **messaging/** | Celery, Kafka, queue design |
-| **django/** | ORM, DRF, migrations, settings, caching, admin |
-| **python/** | async, typing, memory, packaging |
-| **infrastructure/** | containers, Kubernetes |
-| **devops/** | CI/CD, release engineering |
-| **caching/** | strategies, invalidation |
-| **testing/** | unit, integration, contract, e2e, load, security |
-| **ai-backends/** | RAG, LLM calls, agents, evals, semantic caching |
-| **data-engineering/** | batch, streaming, warehouse |
-| **multi-tenancy/** | SaaS tenant isolation models |
-| **storage/** | object storage, files, signed URLs |
-
----
-
-## Playbooks
+### Playbooks
 
 16 incident runbooks in `playbooks/`:
 
@@ -437,56 +253,97 @@ backend-skill/
 | `stale-data.md` | Stale data |
 | `webhook-failure.md` | Webhook failure |
 | `replica-failover.md` | Replica failover |
-| `incident-command.md` | Incident command |
+| `incident-command.md` | Incident command structure |
 
----
+### Checklists
 
-## Checklists
+| Checklist | Items | Purpose |
+|-----------|-------|---------|
+| `architecture-review.md` | 57 | Full architecture design review |
+| `security-checklist.md` | 38 | Pre-release security gate |
+| `code-review-checklist.md` | 40 | Backend code review |
+| `release-checklist.md` | 25 | Production deploy steps |
 
-| Checklist | Purpose |
-|-----------|---------|
-| `architecture-review.md` | 57-question architecture review |
-| `security-checklist.md` | 38-item pre-release security gate |
-| `code-review-checklist.md` | 40-item backend code review |
-| `release-checklist.md` | 25-step production deploy |
+### Integrity Tools
 
----
+Python scripts in `tools/` that keep the knowledge base honest:
 
-## Integrity Tools
-
-Three Python scripts keep the knowledge base honest (in `tools/`):
-
-| Tool | Purpose |
-|------|---------|
-| `check_links.py` | Reports broken/ambiguous Markdown links |
+| Tool | Function |
+|------|----------|
+| `check_links.py` | Reports broken or ambiguous Markdown links |
 | `validate_neurons.py` | Validates neuron schema (ID, Type, H1, H2); fails on zero files |
 | `freshness.py` | Flags stale or future-dated evidence markers |
 
-Run them:
+---
+
+## Installation
+
+This is a **pure Markdown skill** — nothing to install or compile.
+
+**Recommended way:**
 
 ```bash
-python tools/check_links.py
-python tools/validate_neurons.py
-python tools/freshness.py
+git clone https://github.com/mobinhasanghasemi/backend-skill.git
+```
+
+Then give the cloned folder as context/knowledge to your AI agent (Claude, ChatGPT, Cursor, Codex, etc.).
+
+Alternatively, you can directly tell the agent:
+
+```
+Use this skill: https://github.com/mobinhasanghasemi/backend-skill
 ```
 
 ---
 
-## Contributing
+## How the Agent Should Use It
 
-Contributions are welcome. When adding or editing knowledge:
+1. **Read `SKILL.md`** — the activation surface. It tells the agent what this skill is and when to use it.
+2. **Read `BRAIN.md`** — the central cognitive controller. Understand the pipeline and the 10 non-negotiables.
+3. **For any question, follow `NEURAL_ROUTING.md`** to decide which domain to activate.
+4. **Load ONLY the matching domain `ROOT.md`** (e.g. `databases/ROOT.md`), then the best-matching child neuron. Never load an entire domain tree.
+5. **Always apply these engines:**
+   - `SECURITY_GUARDIAN.md` — security review every time
+   - `SIMPLICITY_GOVERNOR.md` — reject unearned complexity
+   - `PERFORMANCE_ENGINE.md` — measure before optimizing
+   - `RELIABILITY_ENGINE.md` — model failure scenarios
+6. **Label every factual claim** with an evidence class (VERIFIED / SUPPORTED / INFERRED / EXPERIMENTAL / UNCERTAIN) per `EVIDENCE_PROTOCOL.md`.
+7. **Use code tiers** per `CODE_TIERS.md` — show the trajectory from bad to excellent, let context decide.
+8. **Run the architecture linter** (`ARCHITECTURE_LINTER.md`) on the design before finalizing.
+9. **Produce a reasoning trace** per `DECISION_ENGINE.md` — PROBLEM, DETECTED DOMAINS, ACTIVATED NEURONS, EVIDENCE, CONSTRAINTS, CANDIDATES, REJECTED OPTIONS, RISK ANALYSIS, TRADE-OFF MATRIX, DECISION, VALIDATION NEXT.
+10. **For production incidents**, pull the matching playbook from `playbooks/`.
 
-1. Follow the neuron contract in `NEURON_PROTOCOL.md`.
-2. Classify every factual claim per `EVIDENCE_PROTOCOL.md` (register sources in `research/sources.md`).
-3. Add the 4-tier code samples per `CODE_TIERS.md` where relevant.
-4. Run the integrity tools before submitting.
-5. Record significant decisions in `adr.md`.
+---
+
+## Strengths & Current Limitations
+
+### Strengths
+
+- **Neural architecture** — a graph with causal relationships, not flat docs. The agent activates only relevant neurons, saving context and producing focused answers.
+- **Routing system** — `NEURAL_ROUTING.md` + `brain/routing.md` give precise domain selection, so the agent never wastes context on irrelevant knowledge.
+- **4 always-on quality engines** — security, simplicity, performance, and reliability filters baked into every decision.
+- **Evidence protocol** — 7-level evidence classification prevents hallucination; every claim is labeled.
+- **Code tiers** — a 4-level teaching ladder (❌ → ✅ → ⚡ → 🏆) with real code samples.
+- **Architecture linter** — 35 machine-checkable anti-pattern rules, each with severity and fix direction.
+- **16 playbooks** — production incident runbooks the agent can follow step-by-step.
+- **Version awareness** — `brain/version-awareness.md` tracks exact versions and support timelines for the major tools.
+- **Failure propagation models** — 7 canonical failure cascades in `brain/failure-propagation.md`.
+- **Integrity tooling** — 3 Python scripts validate links, neuron structure, and evidence freshness.
+- **Zero dependencies** — pure Markdown. No build step, no runtime, no package manager.
+
+### Current Limitations
+
+- **Verification dates** — some `Last Verified` dates reference future or unconfirmed versions; verify before relying on a version number in production.
+- **Source registry** — `research/sources.md` is largely empty; evidence claims should link to verifiable sources.
+- **Agent packaging** — `agents/openai.yaml` targets OpenAI; there is no equivalent packaging for Claude, MiMoCode, or Codex (though `SKILL.md` works with most agents).
+- **Neuron completeness** — some neurons are missing required sections from the strict `NEURON_PROTOCOL.md` contract.
+- **No automated answer tests** — the integrity tools validate the files, but there is no benchmark verifying the agent's answers.
 
 ---
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE). See the file for details.
+MIT License — see [LICENSE](LICENSE).
 
 ---
 
