@@ -1,0 +1,55 @@
+# Metadata for packaging backend-architect-neural as an installable agent skill.
+# The canonical activation surface remains SKILL.md at the repo root.
+
+name: backend-architect-neural
+version: 2.0.0
+description: >
+  Backend architecture and engineering skill: Python/Django/DRF/PostgreSQL/Redis/Celery
+  design, review, performance and reliability remediation, security review, and incident
+  runbooks. Decision-engineered knowledge base: route to the matching neuron, apply
+  security/simplicity/performance/reliability lenses, produce traced answers with
+  evidence labels (VERIFIED/SUPPORTED/INFERRED/...).
+entrypoint: SKILL.md
+included_files:
+  - README.md
+  - SKILL.md
+  - BRAIN.md
+  - NEURAL_ROUTING.md
+  - '*.md'         # root protocol and engine files
+  - brain/
+  - architecture/
+  - api/
+  - databases/
+  - security/
+  - performance/
+  - reliability/
+  - observability/
+  - testing/
+  - python/
+  - django/
+  - messaging/
+  - caching/
+  - distributed-systems/
+  - ai-backends/
+  - multi-tenancy/
+  - infrastructure/
+  - devops/
+  - data-engineering/
+  - storage/
+  - playbooks/
+  - checklists/
+  - adr/
+  - research/
+excluded_files:
+  - development/   # audits & plans (dev-time only)
+  - benchmarks/    # SkillBench suite (optional inclusion flag `with_benchmarks: true`)
+  - tools/         # integrity scripts (optional inclusion flag `with_tools: true`)
+with_benchmarks: false
+with_tools: false
+integrity:
+  check_links: python tools/check_links.py
+  validate: python tools/validate_neurons.py
+  freshness: python tools/freshness.py
+notes: >
+  Set with_benchmarks/with_tools true when bundling the development harness.
+  The skill is a pure knowledge pack — no runtime dependencies.
