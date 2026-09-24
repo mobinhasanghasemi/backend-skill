@@ -1,5 +1,6 @@
 # MEMORY PROTOCOL
 
+
 The brain remembers in three layers. This file defines which"memory" lives in which storage, and how the layers interact with every decision.
 
 ## The three memory layers

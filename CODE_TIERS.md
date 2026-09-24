@@ -1,5 +1,6 @@
 # CODE TIERS — Teaching Samples That Guide, Never Command
 
+
 A neuron's `Code Tiers` section wins nothing if it lectures. It wins everything if the AI, reading those 4 samples, understands the **building spectrum** of the pattern: why minimal is fine, what raises the bar, and what "production" really means. The AI is never told "do this"; it is shown trajectories and decides based on context (load, security class, team size).
 
 ## The 4 tiers, defined

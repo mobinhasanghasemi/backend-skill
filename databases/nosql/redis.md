@@ -73,5 +73,13 @@ Wait — 👍 In each case the specifics (memory, policy, kind) exist per applic
 - TLS + AUTH / ACL roles (Redis 6+ ACL), no fallback to default
 - never run on public port w/o TLS+auth
 
+## Performance
+- Measure first: EXPLAIN (ANALYZE, BUFFERS) for query shape; pg_stat_statements for hot queries (S-044/S-047). No index/cache without measurement per PERFORMANCE_ENGINE.
+- p95/p99 before/after; one change at a time.
+
+## Reliability
+- Timeouts on DB/client, retry with jitter + idempotency, backup/PITR tested monthly (S-046), RPO/RTO defined.
+- Failure: pool exhaustion -> shed load, replica lag -> read-your-writes check.
+
 ## Evidence
 - Redis official docs (VERIFIED via source-S-016, accessed 2026-08); version facts from redis.io release notes

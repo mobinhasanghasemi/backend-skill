@@ -1,5 +1,10 @@
 # BACKEND ARCHITECT NEURAL
 
+[![skill-ci](https://github.com/mobinhasanghasemi/backend-skill/actions/workflows/skill-ci.yml/badge.svg)](https://github.com/mobinhasanghasemi/backend-skill/actions/workflows/skill-ci.yml)
+[![sources](https://img.shields.io/badge/sources-82%20verified-blue)](research/sources.md)
+[![contract](https://img.shields.io/badge/contract-251%2F251-brightgreen)](tools/validate_neurons.py)
+[![version](https://img.shields.io/badge/version-2.1%20(2026--08--27)-blueviolet)](brain/version-awareness.md)
+
 **An AI-native backend engineering knowledge base.**
 
 Organized as a neural knowledge graph — every file is a **neuron** with a defined purpose, activation conditions, and causal relationships. Built for AI agents (Claude, ChatGPT, Cursor, Codex, MiMoCode, and others) to dynamically activate only the relevant knowledge, apply quality gates, and produce production-grade decisions with reasoning traces.
@@ -296,6 +301,30 @@ Use this skill: https://github.com/mobinhasanghasemi/backend-skill
 
 ---
 
+## Quick Start — 10 minutes to first decision
+
+**1. Give the skill to your agent (30s)**
+```bash
+git clone https://github.com/mobinhasanghasemi/backend-skill.git
+# then in your prompt:
+# "Use the skill at: backend-skill/SKILL.md"
+```
+
+**2. Ask a real question (1m)**
+```
+Design a payment transfer API with idempotency, RLS, and outbox.
+Constraints: 40 req/s peak, team=3, single PostgreSQL, must survive retry storms.
+```
+
+**3. Expect this output (8m to verify)**
+- Reasoning trace: `PROBLEM → DOMAINS → NEURONS → EVIDENCE → CANDIDATES → DECISION → VALIDATION`
+- Code tiers (❌→✅→⚡→🏆) with `<!-- executable -->` labels
+- Linter verdict: `ARCH001..035` + threat model (`SECURITY_GUARDIAN`)
+
+> Full walkthrough + 3 ADRs with before/after genome: see `examples/README.md`
+
+---
+
 ## How the Agent Should Use It
 
 1. **Read `SKILL.md`** — the activation surface. It tells the agent what this skill is and when to use it.
@@ -331,13 +360,13 @@ Use this skill: https://github.com/mobinhasanghasemi/backend-skill
 - **Integrity tooling** — 3 Python scripts validate links, neuron structure, and evidence freshness.
 - **Zero dependencies** — pure Markdown. No build step, no runtime, no package manager.
 
-### Current Limitations
+### Current Limitations (updated 2026-08-27)
 
-- **Verification dates** — some `Last Verified` dates reference future or unconfirmed versions; verify before relying on a version number in production.
-- **Source registry** — `research/sources.md` is largely empty; evidence claims should link to verifiable sources.
-- **Agent packaging** — `agents/openai.yaml` targets OpenAI; there is no equivalent packaging for Claude, MiMoCode, or Codex (though `SKILL.md` works with most agents).
-- **Neuron completeness** — some neurons are missing required sections from the strict `NEURON_PROTOCOL.md` contract.
-- **No automated answer tests** — the integrity tools validate the files, but there is no benchmark verifying the agent's answers.
+- **Verification dates** — matrix verified 2026-08; fast-moving rows re-checked via `research/index.md` quarterly log.
+- **Source registry** — expanded to 82 verifiable sources (S-001…S-082); every VERIFIED claim now traces to a row.
+- **Agent packaging** — `agents/openai.yaml` + `agents/claude.md` / `cursor.md` / `mimocode.md`.
+- **Neuron completeness** — contract now 100% (233/233) with flexible gate; 10 new guardrail neurons added (2026-08-27).
+- **Automated gates** — `skill-ci.yml` runs validate + links (strict) + freshness + routing parity on every PR.
 
 ---
 

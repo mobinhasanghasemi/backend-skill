@@ -45,6 +45,52 @@ Access date for all rows: **2026-08-08** (snapshot); rows flagged `(needs refres
 | S-034 | DORA research reports | https://dora.dev/research/ | SUPPORTED | 2023/2024 elite findings |
 | S-035 | Gitleaks (secrets) | https://github.com/gitleaks/gitleaks | VERIFIED | repo scanner (fast-moving) |
 | S-036 | Semgrep docs | https://semgrep.dev/docs/ | VERIFIED | static rules for security/lint |
+| S-037 | Django 6.0 release notes | https://docs.djangoproject.com/en/6.0/releases/6.0/ | VERIFIED | 6.0 features, deprecations; refresh per minor |
+| S-038 | Django security releases | https://docs.djangoproject.com/en/stable/releases/security/ | VERIFIED | CVE advisories; check monthly |
+| S-039 | Django async docs | https://docs.djangoproject.com/en/stable/topics/async/ | VERIFIED | async views, ORM async; still sync ORM core |
+| S-040 | Django migrations docs | https://docs.djangoproject.com/en/stable/topics/migrations/ | VERIFIED | expand/contract, zero-downtime |
+| S-041 | Python 3.14 release notes | https://docs.python.org/3.14/whatsnew/3.14.html | VERIFIED | template strings, subinterpreters |
+| S-042 | Python typing (PEP 484) | https://typing.readthedocs.io/en/latest/ | VERIFIED | type hints, mypy; fast-moving |
+| S-043 | pip / packaging | https://pip.pypa.io/en/stable/ | VERIFIED | pip, wheel, lockfile discipline |
+| S-044 | PostgreSQL 18 release notes | https://www.postgresql.org/docs/18/release-18.html | VERIFIED | AIO, uuidv7, checksums; verify per minor |
+| S-045 | PostgreSQL partitioning | https://www.postgresql.org/docs/current/ddl-partitioning.html | VERIFIED | declarative partitioning, pruning |
+| S-046 | PostgreSQL replication | https://www.postgresql.org/docs/current/runtime-config-replication.html | VERIFIED | streaming, slots, lag |
+| S-047 | PostgreSQL indexing | https://www.postgresql.org/docs/current/indexes.html | VERIFIED | btree, gin, partial, covering |
+| S-048 | PostgreSQL RLS | https://www.postgresql.org/docs/current/ddl-rowsecurity.html | VERIFIED | row-level security policies |
+| S-049 | psycopg pool docs | https://www.psycopg.org/psycopg3/docs/advanced/pool.html | VERIFIED | pool, async pool, sizing |
+| S-050 | Redis 8 GA announcement | https://redis.io/blog/redis-8-ga/ | VERIFIED | GA 8.0 May 2025 modules merged |
+| S-051 | Redis Vector Sets | https://redis.io/docs/latest/commands/vadd/ | SUPPORTED | vector set beta; API may shift |
+| S-052 | Redis ACL docs | https://redis.io/docs/latest/operate/oss_and_stack/management/security/acl/ | VERIFIED | ACL, users, TLS |
+| S-053 | Kafka KRaft docs | https://kafka.apache.org/documentation/#kraft | VERIFIED | KRaft-only 4.x, no ZooKeeper |
+| S-054 | RabbitMQ quorum queues | https://www.rabbitmq.com/docs/quorum-queues | VERIFIED | quorum vs classic trade-offs |
+| S-055 | OpenTelemetry Python SDK | https://opentelemetry.io/docs/languages/python/ | VERIFIED | traces/metrics/logs SDK status |
+| S-056 | Prometheus docs | https://prometheus.io/docs/ | VERIFIED | metrics, PromQL, alerting |
+| S-057 | Grafana docs | https://grafana.com/docs/ | SUPPORTED | dashboards, Loki, Tempo |
+| S-058 | Sentry Python SDK | https://docs.sentry.io/platforms/python/ | VERIFIED | error tracking, performance |
+| S-059 | HashiCorp Vault docs | https://developer.hashicorp.com/vault/docs | VERIFIED | secrets, transit, rotation |
+| S-060 | Let's Encrypt docs | https://letsencrypt.org/docs/ | VERIFIED | ACME, TLS automation |
+| S-061 | OAuth 2.1 draft | https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-13 | SUPPORTED | OAuth 2.1 consolidates best practices |
+| S-062 | OIDC discovery | https://openid.net/specs/openid-connect-discovery-1_0.html | VERIFIED | OIDC discovery spec |
+| S-063 | JWT best practices (RFC 8725) | https://datatracker.ietf.org/doc/html/rfc8725 | VERIFIED | JWT security considerations |
+| S-064 | Pydantic docs | https://docs.pydantic.dev/latest/ | VERIFIED | validation, settings, v2 |
+| S-065 | pytest docs | https://docs.pytest.org/en/stable/ | VERIFIED | fixtures, parametrize, plugins |
+| S-066 | Factory Boy docs | https://factoryboy.readthedocs.io/en/stable/ | VERIFIED | factories for Django ORM |
+| S-067 | httpx docs | https://www.python-httpx.org/ | VERIFIED | async HTTP client, timeouts |
+| S-068 | Celery canvas & chords | https://docs.celeryq.dev/en/stable/userguide/canvas.html | VERIFIED | chain/group/chord, DLQ patterns |
+| S-069 | S3 / MinIO docs | https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html | VERIFIED | presigned URLs, lifecycle |
+| S-070 | Helm docs | https://helm.sh/docs/ | VERIFIED | charts, atomic upgrade, rollback |
+| S-071 | GitHub Actions docs | https://docs.github.com/en/actions | VERIFIED | workflow, OIDC, caching |
+| S-072 | GitLab CI docs | https://docs.gitlab.com/ci/ | VERIFIED | pipeline, DAG, environments |
+| S-073 | RFC 9110 — HTTP semantics | https://datatracker.ietf.org/doc/html/rfc9110 | VERIFIED | methods, status, caching |
+| S-074 | RFC 7807 superseded context | https://datatracker.ietf.org/doc/html/rfc9457#appendix-A | VERIFIED | RFC 7807 → 9457 migration |
+| S-075 | NIST SSDF SP 800-218 | https://csrc.nist.gov/pubs/sp/800/218/final | VERIFIED | secure dev practices |
+| S-076 | OWASP Cheat Sheet — CSRF | https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html | VERIFIED | CSRF token, SameSite |
+| S-077 | OWASP CORS cheat sheet | https://cheatsheetseries.owasp.org/cheatsheets/Cross-Origin_Resource_Sharing_Cheat_Sheet.html | VERIFIED | CORS, preflight, allowlist |
+| S-078 | OWASP Logging cheat sheet | https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html | VERIFIED | no PII/secrets in logs |
+| S-079 | 12-Factor App | https://12factor.net/ | SUPPORTED | config, disposability, logs |
+| S-080 | Google API Design Guide | https://cloud.google.com/apis/design | SUPPORTED | resource naming, error model |
+| S-081 | Stripe API idempotency | https://docs.stripe.com/api/idempotent_requests | VERIFIED | Idempotency-Key pattern reference |
+| S-082 | CloudEvents spec | https://github.com/cloudevents/spec | VERIFIED | event envelope for webhooks/outbox |
 
 ## How to cite from a neuron
 

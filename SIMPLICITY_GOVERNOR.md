@@ -1,5 +1,6 @@
 # SIMPLICITY GOVERNOR
 
+
 Every proposed component must justify its existence. This governor rejects unearned complexity. Apply it to every architecture output and every neuron recommendation.
 
 ## The five questions

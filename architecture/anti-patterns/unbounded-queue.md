@@ -1,6 +1,9 @@
 # Unbounded Queue
 
 ## Identity
+- Type: anti-pattern
+- Status: active
+- Importance: medium
 - ID: architecture.anti-patterns.unbounded-queue
 - Severity: HIGH (ARCH_EN6006)
 

@@ -56,7 +56,14 @@ signature = hmac(secret, payload_bytes).hexdigest()
 - no DLQ → silent lost events
 
 ## Security
-- HMAC secret rotation; never log signature/secret; verify signature in constant time
+- HMAC verification with constant-time compare (`hmac.compare_digest`), secret rotation via Vault (S-059), no secret in logs (S-078).
+
+## Performance
+- Batch worker with `FOR UPDATE SKIP LOCKED`, backoff jitter, DLQ after cap; p95 delivery <2s at 100 req/s (measure).
+
+## Reliability
+- Outbox guarantee (same tx), retry budget, DLQ alert, replay API; RPO 0 for events, RTO = relay lag.
 
 ## Evidence
-- Webhook retry/HMAC patterns: SUPPORTED practice (third-party API guides)
+- Webhook retry/HMAC patterns: SUPPORTED practice (third-party API guides) — HMAC verified via S-069 (accessed 2026-08).
+

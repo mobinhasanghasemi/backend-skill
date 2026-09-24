@@ -1,6 +1,7 @@
 # Pipe and Filter
 
 ## Identity
+- ID: architecture.patterns.pipe-and-filter
 - **ID**: architecture.patterns.pipe-filter
 - Type: pattern
 - Status: active

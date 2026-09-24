@@ -1,6 +1,10 @@
 # Migration Strategies (evolution)
 
 ## Identity — how to change an architecture, not just "upgrade"
+- ID: architecture.evolution.migration-strategies
+- Type: procedure
+- Status: active
+- Importance: medium
 
 ## Golden rule
 - Every migration must have a **rollback** before it touches production (ARCH012)

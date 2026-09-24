@@ -1,6 +1,9 @@
 # Cache Everything
 
 ## Identity
+- Type: anti-pattern
+- Status: active
+- Importance: medium
 - ID: architecture.anti-patterns.caching-everything
 - Severity: MED
 

@@ -59,5 +59,13 @@ def user(root, info):
 ## Security
 - field-level authz in resolvers (every field!), complexity cap, depth cap, no introspection in prod
 
+## Performance
+- Measure first: EXPLAIN (ANALYZE, BUFFERS) for query shape; pg_stat_statements for hot queries (S-044/S-047). No index/cache without measurement per PERFORMANCE_ENGINE.
+- p95/p99 before/after; one change at a time.
+
+## Reliability
+- Timeouts on DB/client, retry with jitter + idempotency, backup/PITR tested monthly (S-046), RPO/RTO defined.
+- Failure: pool exhaustion -> shed load, replica lag -> read-your-writes check.
+
 ## Evidence
 - GraphQL core concepts: SUPPORTED practice (spec-based, no pinned URL; refresh on next release note)

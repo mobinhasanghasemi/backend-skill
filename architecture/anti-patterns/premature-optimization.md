@@ -1,6 +1,9 @@
 # Premature Optimization
 
 ## Identity
+- Type: anti-pattern
+- Status: active
+- Importance: medium
 - ID: architecture.anti-patterns.premature-optimization
 - Severity: MED
 

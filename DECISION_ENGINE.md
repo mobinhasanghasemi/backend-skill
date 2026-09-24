@@ -1,5 +1,6 @@
 # DECISION ENGINE
 
+
 The protocol for any significant architectural or technical decision. Used by `BRAIN.md` at the core decision stage.
 
 ## Decision pipeline (mandatory)

@@ -1,6 +1,8 @@
 # Query Optimization (relational)
 
 ## Identity
+- Type: procedure
+- Importance: medium
 - ID: databases.optimization.query-optimization
 - Status: active
 - Importance: critical

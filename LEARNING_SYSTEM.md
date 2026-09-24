@@ -1,5 +1,6 @@
 # LEARNING SYSTEM
 
+
 How this brain acquires, verifies, saves, and grows knowledge over time. The goal: **never save hallucinations, never let uncertainty masquerade as fact, and keep the graph coherent.**
 
 ---

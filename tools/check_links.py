@@ -34,7 +34,8 @@ TOKEN_RE = re.compile(r"([\w.\-/]+\.md(?:#[A-Za-z0-9\-_]+)?)")
 LINK_RE = re.compile(r"\]\(\s*([^)#\s]+(?:#[A-Za-z0-9\-_]+)?)\s*\)")
 BACKTICK_RE = re.compile(r"`([^`]+)`")
 HEADER_RE = re.compile(r"^#{1,3}\s+(.+?)\s*$", re.M)
-IGNORED = {"README.md"}
+IGNORED = {"README.md", "LICENSE"}
+SKIP_DIRS = {".mimocode", ".git", "node_modules", ".opencode"}
 
 
 def scan_tokens(text: str) -> list[str]:
@@ -45,8 +46,12 @@ def scan_tokens(text: str) -> list[str]:
     return toks
 
 
+def _is_skipped(p: Path) -> bool:
+    return any(part in SKIP_DIRS for part in p.parts)
+
+
 def all_files() -> list[Path]:
-    return sorted(p for p in ROOT.rglob("*.md"))
+    return sorted(p for p in ROOT.rglob("*.md") if not _is_skipped(p))
 
 
 def basename_index(files: list[Path]) -> dict[str, list[Path]]:
@@ -77,6 +82,9 @@ def main() -> int:
         for tok in scan_tokens(text):
             target, _, anchor = tok.partition("#")
             if target in IGNORED:
+                continue
+            # only validate markdown references
+            if not target.lower().endswith(".md"):
                 continue
             if "/" in target or "\\" in target:
                 good = None

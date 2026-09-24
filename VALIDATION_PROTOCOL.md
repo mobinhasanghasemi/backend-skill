@@ -1,5 +1,6 @@
 # VALIDATION PROTOCOL
 
+
 The quality gates that protect the knowledge base and the quality of answers. Two gates: the **Neuron Quality Gate** (for files) and the **Research Quality Gate** (for claims). Plus a final **Answer Check** before responding.
 
 ## Gate 1 — Neuron Quality Gate

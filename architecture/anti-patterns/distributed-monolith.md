@@ -1,6 +1,8 @@
 # Distributed Monolith
 
 ## Identity
+- Type: anti-pattern
+- Importance: medium
 - ID: architecture.anti-patterns.distributed-monolith
 - Status: active — forbidden
 - Severity: CRITICAL

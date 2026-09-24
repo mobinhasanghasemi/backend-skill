@@ -1,6 +1,9 @@
 # God Database
 
 ## Identity
+- Type: anti-pattern
+- Status: active
+- Importance: medium
 - ID: architecture.anti-patterns.god-database
 - Severity: HIGH
 

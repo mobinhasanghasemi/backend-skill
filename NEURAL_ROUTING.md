@@ -1,5 +1,7 @@
 # NEURAL ROUTING
 
+> **Canonical source:** `brain/routing.md` — this file is the human-readable summary. If tables diverge, `brain/routing.md` wins. Parity enforced by `tools/check_routing_parity.py`.
+
 How the AI decides which knowledge to activate for a given problem.
 
 ---

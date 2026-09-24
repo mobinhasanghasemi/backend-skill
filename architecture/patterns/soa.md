@@ -1,6 +1,10 @@
 # Service-Oriented Architecture (SOA)
 
 ## Identity
+- ID: architecture.patterns.soa
+- Type: pattern
+- Status: active
+- Importance: medium
 - **Type**: pattern (classic)
 - **Status**: active — legacy/mixed; see microservices for modern form
 

@@ -1,5 +1,6 @@
 # SECURITY GUARDIAN
 
+
 The cross-cutting security analysis engine. Security is not an optional neuron — any architecture, API design, data flow, or deployment plan goes through this layer.
 
 ## When the Guardian fires

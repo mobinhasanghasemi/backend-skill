@@ -1,6 +1,10 @@
 # Backend-for-Frontend (BFF)
 
 ## Identity
+- ID: architecture.patterns.bff
+- Type: pattern
+- Status: active
+- Importance: medium
 - **Type**: pattern
 - **Status**: active
 - Domain: architecture / api

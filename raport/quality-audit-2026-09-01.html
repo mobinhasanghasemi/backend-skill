@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>گزارش کیفیت مستقل — Backend Architect Neural (۲۰۲۶-۰۹-۰۱)</title>
+<style>
+:root{
+  --bg:#0b0f17; --card:#121826; --card2:#161e30; --bd:#233049; --bd2:#2d4066;
+  --tx:#e5eaf2; --mut:#94a3b8; --dim:#64748b;
+  --ok:#10b981; --warn:#f59e0b; --bad:#f43f5e; --info:#38bdf8; --vio:#a78bfa;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Vazirmatn,Tahoma,system-ui,sans-serif;background:var(--bg);color:var(--tx);line-height:1.9;font-size:14px}
+a{color:#7dd3fc}
+.wrap{max-width:1100px;margin:0 auto;padding:0 18px}
+header{border-bottom:1px solid var(--bd);padding:26px 0 18px;margin-bottom:22px}
+h1{font-size:24px;font-weight:800;line-height:1.4}
+h2{font-size:19px;margin:34px 0 12px;padding-bottom:8px;border-bottom:1px solid var(--bd)}
+h3{font-size:15px;margin:20px 0 8px;color:#cbd5e1}
+p{margin:9px 0;color:#cdd6e4}
+ul,ol{margin:9px 22px 9px 0}
+li{margin:5px 0;color:#cdd6e4}
+code{background:#080c14;border:1px solid var(--bd);border-radius:5px;padding:1px 5px;font-family:ui-monospace,Consolas,monospace;font-size:12px;direction:ltr;display:inline-block}
+pre{background:#080c14;border:1px solid var(--bd);border-radius:9px;padding:12px;overflow:auto;direction:ltr;text-align:left;font-size:12px;margin:10px 0}
+.lead{color:var(--mut);font-size:13.5px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:16px;margin:12px 0}
+.grid{display:grid;gap:12px}
+.g2{grid-template-columns:1fr 1fr}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+@media(max-width:860px){.g2,.g3,.g4{grid-template-columns:1fr}}
+table{width:100%;border-collapse:collapse;font-size:12.5px;margin:10px 0}
+.tw{overflow:auto;border:1px solid var(--bd);border-radius:10px}
+th{background:#0e1626;color:#93a3b8;padding:9px;text-align:right;font-size:11.5px;border-bottom:1px solid var(--bd);white-space:nowrap}
+td{padding:9px;border-bottom:1px solid #17223a;vertical-align:top}
+tr:last-child td{border-bottom:none}
+.b{font-size:10.5px;padding:2px 8px;border-radius:999px;font-weight:700;white-space:nowrap;display:inline-block}
+.b-ok{background:rgba(16,185,129,.14);color:#6ee7b7;border:1px solid rgba(16,185,129,.3)}
+.b-warn{background:rgba(245,158,11,.14);color:#fcd34d;border:1px solid rgba(245,158,11,.3)}
+.b-bad{background:rgba(244,63,94,.14);color:#fda4af;border:1px solid rgba(244,63,94,.3)}
+.b-info{background:rgba(56,189,248,.13);color:#7dd3fc;border:1px solid rgba(56,189,248,.28)}
+.note{border-radius:9px;padding:11px 13px;font-size:12.5px;margin:11px 0}
+.n-ok{background:rgba(16,185,129,.07);border:1px solid rgba(16,185,129,.22)}
+.n-warn{background:rgba(245,158,11,.07);border:1px solid rgba(245,158,11,.22)}
+.n-bad{background:rgba(244,63,94,.07);border:1px solid rgba(244,63,94,.22)}
+.n-info{background:rgba(56,189,248,.07);border:1px solid rgba(56,189,248,.22)}
+.kpi{background:var(--card2);border:1px solid var(--bd);border-radius:11px;padding:13px}
+.kpi b{display:block;font-size:21px;font-weight:800}
+.kpi span{font-size:11.5px;color:var(--mut)}
+.bar{height:7px;background:#0d1524;border:1px solid var(--bd);border-radius:99px;overflow:hidden;margin-top:5px}
+.bar i{display:block;height:100%;border-radius:99px}
+footer{margin:40px 0 30px;padding-top:16px;border-top:1px solid var(--bd);color:var(--dim);font-size:11.5px;text-align:center}
+.muted{color:var(--mut);font-size:12px}
+.tag{font-size:10.5px;color:#93a3b8;background:#0e1626;border:1px solid var(--bd);border-radius:99px;padding:2px 8px;display:inline-block;margin:2px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div><span class="b b-info">حسابرسی مستقل</span> <span class="b b-warn">اجراشده روی نسخه‌ی روی دیسک</span></div>
+  <h1 style="margin-top:10px">گزارش کیفیت اسکیل <span style="color:#7dd3fc">Backend Architect Neural</span></h1>
+  <p class="lead">مسیر: <code>C:\Users\Hirkan\Desktop\skill\backend-skill</code> · تاریخ اجرا: ۲۰۲۶-۰۹-۰۱ · روش: خواندن کامل لایه‌ی پروتکل + نمونه‌برداری نورون‌ها + اجرای هر ۴ ابزار + تست تابعی مسیریابی + مقایسه با ۶ اسکیل مشابه</p>
+</header>
+
+<h2>۱. حکم کلی</h2>
+
+<div class="note n-warn">
+<b>خوب است، اما «۹۸ از ۱۰۰» نیست.</b> این اسکیل یک دانشنامه‌ی بک‌اند با معماری فکرشده و ۲۵۲ فایل مارک‌داون است که واقعاً ارزش استفاده دارد — ولی گزارش قبلیِ خودش (<code>raport/final-report.html</code>) عددها را بیش از واقعیت نشان داده. من هر ادعای آن گزارش را دوباره اندازه گرفتم؛ چند مورد قابل‌ملاحظه با واقعیت نمی‌خواند.
+</div>
+
+<div class="grid g4">
+  <div class="kpi"><b style="color:#7dd3fc">۷۲ / ۱۰۰</b><span>امتیاز حسابرسی مستقل من</span><div class="bar"><i style="width:72%;background:linear-gradient(90deg,#38bdf8,#818cf8)"></i></div></div>
+  <div class="kpi"><b style="color:#fcd34d">۹۸ / ۱۰۰</b><span>امتیاز ادعاشده در گزارش قبلی</span><div class="bar"><i style="width:98%;background:linear-gradient(90deg,#f59e0b,#fbbf24)"></i></div></div>
+  <div class="kpi"><b style="color:#6ee7b7">۴ / ۴</b><span>ابزار صحت‌سنجی سبز (تأیید شد)</span><div class="bar"><i style="width:100%;background:#10b981"></i></div></div>
+  <div class="kpi"><b style="color:#fda4af">۳۰٪</b><span>پوشش واقعی قرارداد نورون</span><div class="bar"><i style="width:30%;background:#f43f5e"></i></div></div>
+</div>
+
+<h3>خلاصه در یک بند</h3>
+<p>معماری مسیریابی و لایه‌ی پروتکل (<code>BRAIN.md</code> / <code>NEURAL_ROUTING.md</code> / <code>EVIDENCE_PROTOCOL.md</code> / <code>SECURITY_GUARDIAN.md</code>) واقعاً خوب طراحی شده و از هر ۶ اسکیلی که با آن مقایسه کردم بلندپروازتر است. اما <b>بدنه‌ی دانش به‌اندازه‌ی چارچوب رشد نکرده</b>: قرارداد ۲۰بخشیِ <code>NEURON_PROTOCOL.md</code> به‌طور میانگین فقط ۳۰٪ در نورون‌های واقعی رعایت شده، جدول‌های مسیریابی ۴۴ کلیدواژه‌ی رایج بک‌اند را پوشش نمی‌دهند (در حالی که نورونِ آن موضوع موجود است)، و <code>validate_neurons.py</code> عدد ۲۵۲/۲۵۲ را با شمردنِ ۹۶ فایلی که خودش از بررسی معاف کرده اعلام می‌کند.</p>
+
+<h3>جواب سؤال «خوبه یا نه؟»</h3>
+<div class="grid g2">
+  <div class="card">
+    <h3 style="margin-top:0;color:#6ee7b7">✔ برای این کارها بله</h3>
+    <ul>
+      <li>مرجع تصمیم‌گیری معماری (تک‌سنگی یا سرویس، کدام DB، صف یا سینک)</li>
+      <li>چک‌لیست ریویو: امنیت، معماری، ریلیز، کد</li>
+      <li>۱۶ playbook حادثه — واقعاً کاربردی و کوتاه</li>
+      <li>مجبورکردن مدل به «مقیاس؟ تیم؟ انطباق؟» پرسیدن قبل از جواب</li>
+      <li>الگوهای distributed: outbox، saga، idempotency، circuit breaker</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3 style="margin-top:0;color:#fda4af">✘ برای این کارها نه</h3>
+    <ul>
+      <li>عمق مرجعِ یک موضوع خاص (مثال دقیق در بخش ۶: مایگریشن)</li>
+      <li>کد آماده‌ی کپی‌شدنی — بیشتر نمونه‌ها شبه‌کد یا شکسته‌اند</li>
+      <li>اتکا به شماره‌ی نسخه‌ها — ماتریس نسخه‌ها عقب افتاده (بخش ۵)</li>
+      <li>اتکا به عددهای گزارش قبلی برای ارائه به کسی</li>
+    </ul>
+  </div>
+</div>
+
+<h2>۲. روش حسابرسی — چه چیزی واقعاً اجرا شد</h2>
+
+<p>هیچ عددی در این گزارش نقل‌قول از گزارش‌های قبلی نیست. هر رقم از اجرای یک فرمان روی همین درخت فایل آمده.</p>
+
+<div class="tw">
+<table>
+<thead><tr><th>گام</th><th>چه کاری شد</th><th>نتیجه</th></tr></thead>
+<tbody>
+<tr><td>خواندن کامل</td><td><code>SKILL.md</code>, <code>BRAIN.md</code>, <code>NEURAL_ROUTING.md</code>, <code>NEURON_PROTOCOL.md</code>, <code>EVIDENCE_PROTOCOL.md</code>, <code>SECURITY_GUARDIAN.md</code>, <code>ARCHITECTURE_LINTER.md</code>, <code>README.md</code>, <code>brain/graph.md</code>, <code>brain/routing.md</code>, <code>brain/version-awareness.md</code>, <code>research/sources.md</code></td><td><span class="b b-ok">۱۲ فایل کامل</span></td></tr>
+<tr><td>نمونه‌ی نورون</td><td>۱۸ نورون از دامنه‌های مختلف: api (ROOT/rest/idempotency/error-design)، django (ROOT/orm/migrations)، databases (ROOT/transactions/isolation/rls)، caching، multi-tenancy، performance، security، distributed-systems، playbooks</td><td><span class="b b-ok">۱۸ فایل</span></td></tr>
+<tr><td>اجرای ابزارها</td><td>هر ۴ اسکریپت <code>tools/</code> با پایتون ۳٫۱۴٫۵</td><td><span class="b b-ok">۴/۴ سبز</span></td></tr>
+<tr><td>تحلیل ساختاری</td><td>اسکریپت PowerShell: پوشش ۲۰ سرفصل قرارداد در ۱۵۶ نورون واقعی، شمارش ID، تشخیص ID تکراری، اندازه‌گیری boilerplate</td><td><span class="b b-warn">شکاف پیدا شد</span></td></tr>
+<tr><td>تست تابعی</td><td>۸۲ قطعه‌ی «activation path» از ۳۳ تسک بنچمارک، بازکردن مسیر ۳ تسک و بررسی وجود جوابِ لازم در مقصد</td><td><span class="b b-bad">۲ مسیر بی‌جواب</span></td></tr>
+<tr><td>راستی‌آزمایی بیرونی</td><td>۱۴ درخواست HTTP: پینگ منابع + <code>endoflife.date</code> برای PostgreSQL/Python/K8s/Redis/Kafka + PyPI برای Django/DRF/Celery + صفحه‌ی دانلود Django + OWASP</td><td><span class="b b-bad">۱ لینک ۴۰۴ · ۵ نسخه‌ی کهنه</span></td></tr>
+<tr><td>مقایسه</td><td>۶ اسکیل: <code>django-expert</code>, <code>django-safe-migration</code>, <code>cdrf-expert</code>, <code>django-celery-expert</code>, <code>super-research</code>, <code>ui-ux-pro-max</code></td><td><span class="b b-info">بخش ۶</span></td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="note n-info">
+<b>محدودیت‌هایی که صادقانه اعلام می‌کنم:</b> ۱) <code>git</code> در این محیط نصب نیست، پس تاریخ کامیت‌ها را نتوانستم بررسی کنم. ۲) بنچمارک زنده‌ی SkillBench را اجرا نکردم — چون خودِ اسکیل هم می‌گوید اجرا نشده؛ من فقط <i>قابل‌اجرا بودنِ</i> harness را تست کردم. ۳) نورون‌ها را نمونه‌برداری کردم نه ۱۰۰٪ خواندن؛ متریک‌های ساختاری اما روی همه‌ی ۲۵۲ فایل اجرا شده.
+</div>
+
+<footer>
+  گزارش کیفیت مستقل · backend-skill · ۲۰۲۶-۰۹-۰۱
+</footer>
+
+</div>
+</body>
+</html>

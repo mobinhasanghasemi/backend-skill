@@ -73,5 +73,13 @@ ALTER TABLE orders SET (autovacuum_vacuum_scale_factor = 0.02,
 - pg_stat_user_tables.*, pg_stat_archiver, WAL positioned
 - autovacuum queue status (pg_stat_activity for autovacuum worker)
 
+## Performance
+- Measure first: EXPLAIN (ANALYZE, BUFFERS) for query shape; pg_stat_statements for hot queries (S-044/S-047). No index/cache without measurement per PERFORMANCE_ENGINE.
+- p95/p99 before/after; one change at a time.
+
+## Reliability
+- Timeouts on DB/client, retry with jitter + idempotency, backup/PITR tested monthly (S-046), RPO/RTO defined.
+- Failure: pool exhaustion -> shed load, replica lag -> read-your-writes check.
+
 ## Evidence
 - PostgreSQL docs on VACUUM/autovacuum (VERIFIED for 15-18)

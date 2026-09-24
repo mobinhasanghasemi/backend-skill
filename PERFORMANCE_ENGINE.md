@@ -1,5 +1,6 @@
 # PERFORMANCE ENGINE
 
+
 Evidence-driven performance engineering. No optimization without measurement; every claim split: measured / vendor-reported / estimated.
 
 ## Core cycle

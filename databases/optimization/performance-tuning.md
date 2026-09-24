@@ -1,6 +1,8 @@
 # Database Performance Tuning (engine)
 
 ## Identity
+- Type: procedure
+- Importance: medium
 - ID: databases.optimization.performance-tuning
 - Status: active
 

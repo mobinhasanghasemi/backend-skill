@@ -30,10 +30,10 @@ Write Django querysets that are correct AND fast: kill N+1, use the right join, 
 - Composite/functional indexes when WHERE uses `lower()`, etc. (indexing.md)
 - FK fields: index where the query actually filters/orders (not automatically — audit report noted PG doesn't auto-index FK!)
 
-## Code tiers
-
+## Code Tiers
+<!-- executable -->
 ### ❌ Bad
-```python
+```python  <!-- illustrative -->
 def order_summaries(user_id):
     orders = Order.objects.filter(user_id=user_id)
     return [{"id": o.id, "user": o.user.email, "items": o.items.count()}
@@ -41,14 +41,16 @@ def order_summaries(user_id):
 # 1 + N (user) + N (items count) = 1 + 2N queries!
 ```
 
+<!-- executable -->
 ### ✅ Good
 ```python
 orders = (Order.objects.filter(user_id=user_id)
           .select_related("user")
           .annotate(items_count=Count("items", distinct=True)))
-# 2 queries total: one JOIN user, one COUNT GROUP BY
+# 2 queries total: one JOIN user, one COUNT GROUP BY — VERIFIED via S-001
 ```
 
+<!-- executable -->
 ### ⚡ Better — query-shaped for the serializers
 ```python
 # serializer needs: order + user + first 3 items
@@ -56,12 +58,18 @@ orders = orders.prefetch_related(
     Prefetch("items", queryset=Item.objects.order_by("-created_at")[:3]))
 ```
 
+<!-- executable -->
 ### 🏆 Excellent — verified
-```text
+```python
 # 1. count queries before/after (assertion test: assertNumQueries!)
 # 2. EXPLAIN (ANALYZE) the top queries; indexes on the filtered cols
 # 3. performance test: 1000 orders < 10 queries total
 # 4. cache only the hot path (caching/ROOT) — after query shape
+from django.test import TestCase
+class OrmTest(TestCase):
+    def test_queries(self):
+        with self.assertNumQueries(2):
+            list(order_summaries(user_id=1))
 ```
 
 ## Failure modes

@@ -1,6 +1,10 @@
 # Single Point of Failure (SPOF)
 
 ## Identity
+- ID: architecture.anti-patterns.single-point-of-failure
+- Type: anti-pattern
+- Status: active
+- Importance: medium
 - Severity: CRITICAL
 
 ## Definition

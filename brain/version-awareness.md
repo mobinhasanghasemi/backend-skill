@@ -2,7 +2,7 @@
 
 Global version matrix. Every technology neuron must stay consistent with this file; a change here invalidates the neuron's Version Awareness and triggers re-verification.
 
-> **Knowledge freshness policy**: versions below were verified against official sources in **August 2026**. Always re-verify before basing a production decision on a version number.
+> **Knowledge freshness policy**: versions below were verified against official sources in **27 August 2026**. Always re-verify before basing a production decision on a version number. Last bump: 2026-08-27 — added 10 guardrail neurons + 15 patched neurons + 46 sources (see research/index.md re-verify log).
 
 ## Runtime / frameworks
 

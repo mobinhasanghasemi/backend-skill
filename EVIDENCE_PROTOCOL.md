@@ -1,5 +1,6 @@
 # EVIDENCE PROTOCOL
 
+
 Defines evidence classification, sourcing, and confidence calculus. Every factual claim in the knowledge base must carry a class; everything the brain asserts has a justification.
 
 ## Evidence Classes

@@ -1,5 +1,11 @@
 # ADR — Architecture Decision Records
 
+## Identity
+- ID: adr
+- Type: concept
+- Status: active
+- Importance: medium
+
 > Append-only decision journal: every significant choice gets a record. Reference in ADRs, GENOME, and incident reports.
 
 ## Decision form (fill for each ADR)
@@ -18,10 +24,12 @@
 3. Decisions affecting: policy, security, money, availability — mandatory
 4. Group by domain dirs for readability: `adr/` root + index (chronological table)
 
-## Index (placeholder — add rows as decisions land)
+## Index
 | ADR | Title | Date | Status |
 |---|---|---|---|
-| (adr-001) | Example: cache strategy for catalog | 2026-08-08 | proposed |
+| ADR-001 | Cache strategy for catalog (pg partial index + replica + redis) | 2026-08-10 | accepted |
+| ADR-002 | Transactional outbox for webhook delivery | 2026-08-11 | accepted (see examples/adr-002) |
+| ADR-003 | RLS vs app-enforced tenant isolation | 2026-08-12 | accepted (see examples/adr-003) |
 
 ## The journaling rhythm
 - after each design/review: write or update; the ENGINE and LEARN keep ADRs in sync

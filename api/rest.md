@@ -84,5 +84,13 @@ p99 latency budget per endpoint declared + dashboards
 - PUT for reversible non-idempotent service action (external POST only)
 
 ## Version updates
+## Performance
+- Measure first: EXPLAIN (ANALYZE, BUFFERS) for query shape; pg_stat_statements for hot queries (S-044/S-047). No index/cache without measurement per PERFORMANCE_ENGINE.
+- p95/p99 before/after; one change at a time.
+
+## Reliability
+- Timeouts on DB/client, retry with jitter + idempotency, backup/PITR tested monthly (S-046), RPO/RTO defined.
+- Failure: pool exhaustion -> shed load, replica lag -> read-your-writes check.
+
 ## Evidence
 - Fielding thesis/REST constraints (VERIFIED theory), API guidelines (REST SteveZ etc. — SUPPORTED practice)

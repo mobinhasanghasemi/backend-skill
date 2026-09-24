@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>گزارش نقد و ارزیابی اسکیل Backend Architect Neural v2</title>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<style>
+:root{
+  --bg:#0a0e1a;
+  --bg2:#0f172a;
+  --card:#111b2f;
+  --card2:#162340;
+  --border:#1e2e4f;
+  --border2:#23365f;
+  --text:#e2e8f0;
+  --muted:#94a3b8;
+  --dim:#64748b;
+  --accent:#38bdf8;
+  --accent2:#818cf8;
+  --emerald:#10b981;
+  --amber:#f59e0b;
+  --rose:#f43f5e;
+  --violet:#a78bfa;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Vazirmatn',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.8;overflow-x:hidden}
+a{color:var(--accent);text-decoration:none}
+.container{max-width:1180px;margin:0 auto;padding:0 24px}
+.topbar{position:sticky;top:0;z-index:50;background:rgba(10,14,26,.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.topbar-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;max-width:1180px;margin:0 auto}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#38bdf8,#818cf8);display:grid;place-items:center;font-weight:800;color:#0a0e1a;font-size:14px}
+.brand h1{font-size:14px;font-weight:700;letter-spacing:.02em}
+.brand p{font-size:11px;color:var(--muted)}
+.badge{font-size:11px;padding:6px 12px;border-radius:999px;background:rgba(56,189,248,.12);border:1px solid rgba(56,189,248,.25);color:#7dd3fc}
+.hero{padding:44px 0 28px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:-40% -20% auto -20%;height:520px;background:radial-gradient(600px 300px at 50% 0%, rgba(56,189,248,.15), transparent 70%), radial-gradient(700px 400px at 80% 20%, rgba(129,140,248,.12), transparent 70%);pointer-events:none}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:28px;align-items:start;position:relative}
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr}}
+.kicker{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.12em;color:#7dd3fc;background:rgba(56,189,248,.08);border:1px solid rgba(56,189,248,.18);padding:6px 10px;border-radius:999px;margin-bottom:14px}
+.hero h2{font-size:30px;font-weight:800;line-height:1.3;margin-bottom:10px}
+.hero h2 span{background:linear-gradient(90deg,#38bdf8,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-desc{color:var(--muted);font-size:13.5px;max-width:62ch}
+.meta-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}
+.meta-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:12px 14px}
+.meta-card .k{font-size:11px;color:var(--dim);margin-bottom:4px}
+.meta-card .v{font-size:12.5px;font-weight:600}
+.score-card{background:linear-gradient(180deg,rgba(17,27,47,.9),rgba(15,23,42,.9));border:1px solid var(--border2);border-radius:22px;padding:22px;position:relative;overflow:hidden}
+.score-card::after{content:'';position:absolute;inset:auto -30% -40% -30%;height:200px;background:radial-gradient(400px 160px at 50% 0%, rgba(56,189,248,.12), transparent 70%)}
+.score-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;position:relative}
+.score-header h3{font-size:13px;font-weight:700}
+.score-header small{font-size:11px;color:var(--muted);border:1px solid var(--border);padding:4px 8px;border-radius:999px}
+.gauge-wrap{display:grid;grid-template-columns:140px 1fr;gap:18px;align-items:center;position:relative}
+.gauge{width:140px;height:140px;position:relative;display:grid;place-items:center}
+.gauge svg{transform:rotate(-90deg);position:absolute;inset:0;width:100%;height:100%}
+.gauge-bg{fill:none;stroke:#1e2e4f;stroke-width:10}
+.gauge-fg{fill:none;stroke:url(#grad);stroke-width:10;stroke-linecap:round;stroke-dasharray: 339.292;stroke-dashoffset: 74.6;transition:1.2s ease}
+.gauge-center{position:relative;text-align:center}
+.gauge-center strong{font-size:32px;font-weight:800;line-height:1}
+.gauge-center span{font-size:11px;color:var(--muted);display:block;margin-top:2px}
+.level-pill{display:inline-flex;align-items:center;gap:6px;margin-top:8px;font-size:11px;padding:5px 10px;border-radius:999px;background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.25);color:#6ee7b7}
+.score-bars{display:grid;gap:10px}
+.bar-row{display:grid;grid-template-columns:1fr 46px;gap:10px;align-items:center}
+.bar-label{font-size:11.5px;color:var(--muted);display:flex;justify-content:space-between;margin-bottom:4px}
+.bar-label b{color:var(--text);font-weight:600}
+.track{height:6px;background:#0f1a2e;border-radius:999px;overflow:hidden;border:1px solid #1e2e4f}
+.fill{height:100%;border-radius:999px;background:linear-gradient(90deg,#38bdf8,#818cf8)}
+.verdict-box{margin-top:14px;background:rgba(16,185,129,.07);border:1px solid rgba(16,185,129,.18);border-radius:12px;padding:12px 14px;position:relative}
+.verdict-box h4{font-size:12px;color:#6ee7b7;margin-bottom:4px}
+.verdict-box p{font-size:12px;color:#cbd5e1;line-height:1.7}
+
+.section{padding:22px 0}
+.card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:22px}
+.card h3{font-size:15px;font-weight:700;margin-bottom:8px;display:flex;align-items:center;gap:10px}
+.card h3 i{width:28px;height:28px;border-radius:8px;display:grid;place-items:center;font-size:13px;font-style:normal}
+.card p.lead{color:var(--muted);font-size:13px;margin-bottom:14px;line-height:1.9}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:900px){.grid2{grid-template-columns:1fr}}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:900px){.grid3{grid-template-columns:1fr}}
+.kpi{display:flex;align-items:center;gap:14px;background:var(--card2);border:1px solid var(--border);border-radius:14px;padding:14px}
+.kpi .icon{width:40px;height:40px;border-radius:10px;display:grid;place-items:center;font-size:16px;flex-shrink:0}
+.kpi strong{font-size:18px;font-weight:800}
+.kpi span{font-size:11px;color:var(--muted)}
+.kpi small{font-size:11px;color:var(--dim)}
+.table-wrap{overflow:auto;border-radius:12px;border:1px solid var(--border);margin-top:12px}
+table{width:100%;border-collapse:collapse;font-size:12.5px;min-width:640px}
+th{background:#0f1d33;color:#94a3b8;font-weight:600;text-align:right;padding:10px 12px;border-bottom:1px solid var(--border);font-size:11px;letter-spacing:.04em}
+td{padding:11px 12px;border-bottom:1px solid #162340;color:#cbd5e1;vertical-align:top}
+tr:last-child td{border-bottom:none}
+.pill{font-size:10px;padding:3px 8px;border-radius:999px;font-weight:600;display:inline-block}
+.p-crit{background:rgba(244,63,94,.15);color:#fda4af;border:1px solid rgba(244,63,94,.25)}
+.p-high{background:rgba(245,158,11,.15);color:#fcd34d;border:1px solid rgba(245,158,11,.25)}
+.p-med{background:rgba(56,189,248,.12);color:#7dd3fc;border:1px solid rgba(56,189,248,.22)}
+.p-low{background:rgba(100,116,139,.15);color:#94a3b8;border:1px solid rgba(100,116,139,.25)}
+.score-badge{font-weight:700;font-size:12px;padding:4px 8px;border-radius:8px;display:inline-block;min-width:44px;text-align:center}
+.s-a{background:rgba(16,185,129,.15);color:#6ee7b7;border:1px solid rgba(16,185,129,.25)}
+.s-b{background:rgba(56,189,248,.14);color:#7dd3fc;border:1px solid rgba(56,189,248,.2)}
+.s-c{background:rgba(245,158,11,.14);color:#fcd34d;border:1px solid rgba(245,158,11,.22)}
+.s-d{background:rgba(244,63,94,.14);color:#fda4af;border:1px solid rgba(244,63,94,.22)}
+.timeline{position:relative;padding-right:18px}
+.timeline::before{content:'';position:absolute;right:5px;top:6px;bottom:6px;width:2px;background:linear-gradient(#38bdf8,#818cf8);opacity:.35;border-radius:999px}
+.tl-item{position:relative;padding:14px 16px 14px 14px;background:var(--card2);border:1px solid var(--border);border-radius:14px;margin-bottom:12px;margin-right:10px}
+.tl-item::before{content:'';position:absolute;right:-16px;top:18px;width:10px;height:10px;border-radius:50%;background:#38bdf8;box-shadow:0 0 0 4px rgba(56,189,248,.15)}
+.tl-item h4{font-size:13px;font-weight:700;margin-bottom:4px}
+.tl-item p{font-size:12px;color:var(--muted);line-height:1.8}
+.tag{font-size:10px;padding:3px 7px;border-radius:999px;background:#0f1d33;border:1px solid var(--border);color:var(--muted);margin-left:6px}
+.chart-box{background:var(--card2);border:1px solid var(--border);border-radius:14px;padding:14px}
+.chart-box h4{font-size:12px;font-weight:700;margin-bottom:10px;color:#cbd5e1}
+.rec-card{border-right:3px solid transparent;padding:16px;background:var(--card2);border-radius:14px;border:1px solid var(--border);margin-bottom:12px}
+.rec-card.p0{border-right-color:#f43f5e}
+.rec-card.p1{border-right-color:#f59e0b}
+.rec-card.p2{border-right-color:#38bdf8}
+.rec-card h4{font-size:13px;font-weight:700;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.rec-card p{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.8}
+.rec-card ul{margin:8px 16px 0 0;font-size:12px;color:#cbd5e1;line-height:1.9}
+.code-block{background:#080c18;border:1px solid #1e2e4f;border-radius:12px;padding:14px;font-family:ui-monospace,Consolas,monospace;font-size:11.5px;color:#cbd5e1;overflow:auto;direction:ltr;text-align:left;line-height:1.6}
+.pros-cons{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:700px){.pros-cons{grid-template-columns:1fr}}
+.pc-col{background:var(--card2);border:1px solid var(--border);border-radius:14px;padding:14px}
+.pc-col h4{font-size:12px;font-weight:700;margin-bottom:8px}
+.pc-col li{font-size:12px;color:#cbd5e1;margin:6px 14px 0 0;line-height:1.7}
+.pc-col li::marker{color:var(--accent)}
+.note{background:rgba(56,189,248,.07);border:1px solid rgba(56,189,248,.15);border-radius:12px;padding:12px 14px;font-size:12px;color:#cbd5e1;line-height:1.8}
+.warn{background:rgba(245,158,11,.07);border:1px solid rgba(245,158,11,.18)}
+.danger{background:rgba(244,63,94,.07);border:1px solid rgba(244,63,94,.18)}
+.footer{padding:24px 0 40px;text-align:center;color:var(--dim);font-size:11px;border-top:1px solid var(--border);margin-top:24px}
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:11px;padding:5px 9px;border-radius:999px;background:#0f1d33;border:1px solid var(--border);color:#94a3b8}
+.legend{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+.legend span{font-size:11px;color:var(--muted);display:flex;align-items:center;gap:6px}
+.dot{width:8px;height:8px;border-radius:50%;display:inline-block}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <div class="logo">◈</div>
+      <div>
+        <h1>Backend Architect Neural — گزارش نقد فنی</h1>
+        <p>بررسی دقت، کیفیت، پوشش شواهد و پیشنهادهای ارتقای وضوح اثرگذاری</p>
+      </div>
+    </div>
+    <div style="display:flex;gap:8px;align-items:center">
+      <span class="badge">نسخه v2 · مرداد ۱۴۰۵ / Aug 2026</span>
+      <span class="badge" style="background:rgba(16,185,129,.12);border-color:rgba(16,185,129,.22);color:#6ee7b7">سطح بلوغ: پیشرفته</span>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <section class="hero">
+    <div class="hero-grid">
+      <div>
+        <div class="kicker">● AUDIT REPORT — مبنای بررسی: اجرای ابزارها + خوانش ۱۹ پروتکل/انجین + ۲۳۳ فایل اسکیل</div>
+        <h2>اسکیل شما یک <span>سیستم عصبیِ تصمیم‌ساز</span> است،<br>نه یک پوشه‌ی Markdown.</h2>
+        <p class="hero-desc">این گزارش، معماری Backend Architect Neural را مثل یک سیستمِ پروداکشن ریویو می‌کند: چه چیزی در سطح جهانی است، کجا اعتمادِ بیش‌ازحد به قراردادها شکننده می‌شود، و برای اینکه به یک «منبعِ مرجعِ قابل استناد» بدل شود دقیقا چه باید کرد — اولویت‌بندی‌شده، قابل اجرا، با ردِ شواهد.</p>
+        <div class="meta-grid">
+          <div class="meta-card"><div class="k">دامنه اسکیل</div><div class="v">Python / Django / DRF / PG / Redis / Celery / Queues</div></div>
+          <div class="meta-card"><div class="k">تعداد فایل MD (بدون vendor)</div><div class="v">۲۳۳ فایل · ۲۰ دامنه</div></div>
+          <div class="meta-card"><div class="k">ابزارهای صحت‌سنجی</div><div class="v">validate_neurons · check_links · freshness</div></div>
+        </div>
+      </div>
+      <div class="score-card">
+        <div class="score-header">
+          <h3>امتیاز نهایی اسکیل</h3>
+          <small>وزن‌دهی: معماری ۲۵% · کیفیت ۲۵% · شواهد ۲۰% · عملیات ۱۵% · DX ۱۵%</small>
+        </div>
+        <div class="gauge-wrap">
+          <div class="gauge">
+            <svg viewBox="0 0 120 120">
+              <defs><linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#38bdf8"/><stop offset="100%" stop-color="#818cf8"/></linearGradient></defs>
+              <circle class="gauge-bg" cx="60" cy="60" r="54"></circle>
+              <circle class="gauge-fg" cx="60" cy="60" r="54"></circle>
+            </svg>
+            <div class="gauge-center">
+              <strong>۷۸</strong>
+              <span>از ۱۰۰</span>
+              <div class="level-pill">● B+ — قوی، آماده‌ی پروداکشن با بدهیِ فنیِ شفاف</div>
+            </div>
+          </div>
+          <div class="score-bars">
+            <div class="bar-row"><div><div class="bar-label"><span>معماری و مسیریابی عصبی</span><b>۹۴</b></div><div class="track"><div class="fill" style="width:94%"></div></div></div><span class="score-badge s-a">A</span></div>
+            <div class="bar-row"><div><div class="bar-label"><span>انجین‌های کیفی و Linter</span><b>۹۰</b></div><div class="track"><div class="fill" style="width:90%"></div></div></div><span class="score-badge s-a">A</span></div>
+            <div class="bar-row"><div><div class="bar-label"><span>عملیات (Playbooks/Checklists)</span><b>۸۵</b></div><div class="track"><div class="fill" style="width:85%"></div></div></div><span class="score-badge s-a">A-</span></div>
+            <div class="bar-row"><div><div class="bar-label"><span>ابزار صحت‌سنجی</span><b>۸۲</b></div><div class="track"><div class="fill" style="width:82%"></div></div></div><span class="score-badge s-b">B+</span></div>
+            <div class="bar-row"><div><div class="bar-label"><span>شواهد و اتکاپذیری</span><b>۷۴</b></div><div class="track"><div class="fill" style="width:74%"></div></div></div><span class="score-badge s-b">B</span></div>
+            <div class="bar-row"><div><div class="bar-label"><span>پوشش دامنه و عمق نورون</span><b>۷۱</b></div><div class="track"><div class="fill" style="width:71%"></div></div></div><span class="score-badge s-b">B</span></div>
+            <div class="bar-row"><div><div class="bar-label"><span>یادگیری و حافظه</span><b>۶۸</b></div><div class="track"><div class="fill" style="width:68%"></div></div></div><span class="score-badge s-c">C+</span></div>
+            <div class="bar-row"><div><div class="bar-label"><span>تجربه‌ی توسعه‌دهنده (DX)</span><b>۶۶</b></div><div class="track"><div class="fill" style="width:66%"></div></div></div><span class="score-badge s-c">C+</span></div>
+          </div>
+        </div>
+        <div class="verdict-box">
+          <h4>حکم یک‌خطی داوران</h4>
+          <p>ایده‌ی «مغزِ فعال‌سازِ تدریجی + ۴ انجینِ همیشه‌روشن + پروتکلِ شواهدِ ۷سطحی» در مقیاسِ جهانی متمایز است. نمره از ۷۸ فراتر نمی‌رود چون قراردادِ نورون (NEURON_PROTOCOL) در عمل فقط ۵۷٪ رعایت شده و لایه‌ی «قابلیتِ اثباتِ ادعاها» هنوز از ابزار به جوابِ عامل نرسیده است — گرچه نقشه‌ی راه برای جهش به ۹۰+ کاملا روشن است.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KPI strip -->
+  <section class="section">
+    <div class="grid3">
+      <div class="kpi"><div class="icon" style="background:rgba(56,189,248,.14);color:#7dd3fc">◐</div><div><strong>۵۷٫۱٪</strong><br><span>نورونِ دارای Identity کامل (ID+Type)</span><br><small>۱۳۳ از ۲۳۳ — ابزار ۱۴۸/۲۶۲ را با ‎.mimocode‎ گزارش کرد</small></div></div>
+      <div class="kpi"><div class="icon" style="background:rgba(16,185,129,.14);color:#6ee7b7">✓</div><div><strong>۴۴۳</strong><br><span>نشانِ شواهدِ تاریخ‌دار (بدون stale)</span><br><small>۱۷۱ فایل دارای Evidence · freshness: بدون خطای تاریخ</small></div></div>
+      <div class="kpi"><div class="icon" style="background:rgba(245,158,11,.14);color:#fcd34d">⚑</div><div><strong>۳۶</strong><br><span>ردیفِ منبعِ معتبر در research/sources.md</span><br><small>پوشش RFC/OWASP/PG/Django خوب؛ بسط به ۸۰+ لازم</small></div></div>
+    </div>
+  </section>
+
+  <!-- radar + bar -->
+  <section class="section grid2">
+    <div class="chart-box">
+      <h4>نمای راداری — توازنِ اسکیل</h4>
+      <canvas id="radar" height="260"></canvas>
+      <p style="font-size:11px;color:var(--dim);margin-top:8px">نمره‌ها از بازبینیِ دستی + خروجیِ ابزارها استخراج شده. خط‌چین: میانگینِ مطلوبِ ۸۵ برای «اسکیلِ مرجع».</p>
+    </div>
+    <div class="chart-box">
+      <h4>انطباق با قرارداد نورون (NEURON_PROTOCOL)</h4>
+      <canvas id="contractBar" height="260"></canvas>
+      <div class="note warn" style="margin-top:10px">حفره‌ی اصلی: <b>Security ۲۶٪ · Performance ۷٪ · Reliability ۷٪ · Failure Modes ۱۰٪ · Anti-Patterns ۱٪</b> — یعنی لایه‌های کیفی که اسکیل رو متمایز می‌کنند، در بدنه‌ی نورون‌ها کم‌حضورند (درحالی‌که در انجین‌ها قوی‌اند).</div>
+    </div>
+  </section>
+
+  <!-- verdict table -->
+  <section class="section">
+    <div class="card">
+      <h3><i style="background:rgba(56,189,248,.15);color:#7dd3fc">▦</i> کارنامه‌ی تفصیلی — ۸ بُعد</h3>
+      <p class="lead">هر بُعد با سه لنز سنجیده شد: «طراحی روی کاغذ»، «پیاده‌سازی در فایل‌ها»، «قابلیت راستی‌آزماییِ خودکار». اختلافِ این سه، دقیقا جایی است که پیشنهادها شکل می‌گیرند.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th style="width:22%">بُعد</th><th style="width:7%">نمره</th><th>چه عالی است</th><th>چه می‌لنگد</th><th>اثر بر دقت</th></tr></thead>
+          <tbody>
+            <tr><td><b>معماری و مسیریابی</b><br><small style="color:var(--dim)">SKILL.md · BRAIN.md · NEURAL_ROUTING · brain/</small></td><td><span class="score-badge s-a">۹۴</span></td><td>افشای تدریجیِ بی‌نقص، بودجه‌ی توجه (۲ فعال + ۴ پشتیبان)، گرافِ سراسریِ Mermaid، تفکیکِ تمایزِ «نفوذ نه دستور»</td><td>هم‌پوشانیِ جدولِ مسیریابی بین <code>NEURAL_ROUTING.md:68</code> و <code>brain/routing.md:8</code> — دو منبعِ حقیقت برای یک نگاشت</td><td><span class="pill p-low">کم</span></td></tr>
+            <tr><td><b>انجین‌های کیفی</b><br><small style="color:var(--dim)">SECURITY_GUARDIAN · SIMPLICITY_GOVERNOR · PERFORMANCE_ENGINE · RELIABILITY_ENGINE · ARCHITECTURE_LINTER</small></td><td><span class="score-badge s-a">۹۰</span></td><td>۳۵ قانونِ قابلِ ماشین‌چک (ARCH001–035)، اصلِ «اندازه‌گیری قبل از بهینه‌سازی»، حاکمِ سادگی با وتو و مسیرِ override شفاف</td><td>نورون‌ها بندِ Performance/Reliability/Security را کم دارند (۷–۲۶٪) — انجین‌ها قوی‌اند اما در بدنه تزریق نشده‌اند</td><td><span class="pill p-med">متوسط</span></td></tr>
+            <tr><td><b>شواهد و اتکاپذیری</b><br><small style="color:var(--dim)">EVIDENCE_PROTOCOL · RESEARCH_PROTOCOL · sources.md · version-awareness</small></td><td><span class="score-badge s-b">۷۴</span></td><td>طبقه‌بندیِ ۷سطحیِ بی‌نقص، قانونِ «VERIFIED بدون source-ID تخلف است»، ماتریسِ نسخه‌ی ۲۰۲۶-۰۸ دقیق و به‌روز</td><td>فقط ۳۶ منبع؛ بخشِ بزرگی از نورون‌ها «SUPPORTED» را بدون ارجاعِ ردیفی می‌نویسند؛ بنچمارکِ PG 18 «۳x» درست برچسبِ EXPERIMENTAL دارد اما فاقد روشِ بازتولید</td><td><span class="pill p-high">زیاد</span></td></tr>
+            <tr><td><b>پوشش دامنه</b><br><small style="color:var(--dim)">۲۰ دامنه · ۲۳۳ MD</small></td><td><span class="score-badge s-b">۷۱</span></td><td>مثلثِ Django/PG/API بسیار عمیق (orm.md, idempotency.md, drf.md نمونه‌ی عالیِ tiers)</td><td>multi-tenancy=۱ فایل، storage=۲، caching=۳، infrastructure=۳؛ observability فاقدِ نمونه‌ی OTelِ اجرایی</td><td><span class="pill p-high">زیاد</span></td></tr>
+            <tr><td><b>یادگیری و حافظه</b><br><small style="color:var(--dim)">LEARNING_SYSTEM · MEMORY_PROTOCOL · ADR</small></td><td><span class="score-badge s-c">۶۸</span></td><td>تفکیکِ سه‌لایه (semantic/episodic/procedural) و پروتکلِ ذخیره‌ی ۸مرحله‌ای دقیق</td><td>adr/ فقط template دارد؛ research/index ۱۱ ردیفِ دستی؛ هیچ گزارشِ «حلقه‌ی یادگیریِ اجرا‌شده» دیده نشد</td><td><span class="pill p-med">متوسط</span></td></tr>
+            <tr><td><b>ابزار صحت‌سنجی</b></td><td><span class="score-badge s-b">۸۲</span></td><td>سه ابزارِ تمیز، خطایابیِ لینک (۳ نوعِ resolve)، freshness با منطقِ بازه‌ی تاریخ</td><td>validate_neurons عملا همه‌چیز از جمله <code>.mimocode/node_modules</code> را می‌خواند → ۱۹۹ brokenِ کاذب؛ و protocol files/BRAIN را هم «فاقد ID» می‌شمارد</td><td><span class="pill p-med">متوسط</span></td></tr>
+            <tr><td><b>عملیات</b><br><small style="color:var(--dim)">playbooks · checklists · failure-propagation</small></td><td><span class="score-badge s-a">۸۵</span></td><td>۱۶ ران‌بوکِ عالی + ۴ چک‌لیستِ دروازه‌ای + ۷ مدلِ آبشاری — برای on-call واقعی مفید</td><td>بدونِ تمرینِ chaos یا drillِ گزارش‌شده؛ playbookها تستِ factory ندارند (مثلا replica-failover بدونِ ورژنِ Patroni)</td><td><span class="pill p-low">کم</span></td></tr>
+            <tr><td><b>تجربه‌ی توسعه‌دهنده</b></td><td><span class="score-badge s-c">۶۶</span></td><td>READMEِ ۳۵۴خطیِ بسیار خوانا، pipelineِ شناختیِ کامل</td><td>منحنیِ یادگیریِ تند برای تازه‌وارد؛ فقدانِ «۱۰ دقیقه تا اولین تصمیم»، نبودِ اسنیپتِ CI، نبودِ بسته‌بندیِ Claude/Cursor</td><td><span class="pill p-high">زیاد</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- strengths vs weaknesses -->
+  <section class="section pros-cons">
+    <div class="pc-col">
+      <h4 style="color:#6ee7b7">● ۷ نقطه‌ی قوتِ در سطحِ جهانی</h4>
+      <ul>
+        <li><b>افشای تدریجیِ واقعی:</b> عامل هرگز کل درخت را نمی‌خواند — صرفه‌جوییِ کانتکست و دقتِ پاسخ (BRAIN.md:87).</li>
+        <li><b>چهار انجینِ همیشه‌روشن:</b> الگوی نادرِ «security/simplicity/performance/reliability as filters» نه چک‌لیستِ انتهایی.</li>
+        <li><b>پروتکلِ شواهدِ ۷سطحی:</b> VERIFIED/SUPPORTED/INFERRED/EXPERIMENTAL/UNCERTAIN/OUTDATED/DEPRECATED با قانونِ ارجاعِ اجباری — ضدِ توهم.</li>
+        <li><b>Code Tiers (❌→✅→⚡→🏆):</b> آموزشِ طیفی به‌جای تجویزِ تک‌نسخه‌ای؛ انتخابِ سطح به کانتکست واگذار می‌شود (CODE_TIERS.md).</li>
+        <li><b>Architecture Linterِ ۳۵قانونه:</b> قابلِ ماشین‌چک، severityدار، با مسیرِ رفع — نادر در اسکیل‌های دانشی.</li>
+        <li><b>ماتریسِ نسخه‌ی زنده:</b> Python 3.14.7 · Django 6.0.8 · PG 18.4 · Redis 8.6 · Kafka 4.3 با EOL و تغییراتِ شکست.</li>
+        <li><b>Zero-dependency خالص:</b> Markdownِ بدونِ build — قابلِ حمل به هر عامل (Claude/Cursor/Codex/MiMo).</li>
+      </ul>
+    </div>
+    <div class="pc-col">
+      <h4 style="color:#fda4af">● ۷ شکافِ تعیین‌کننده‌ی سقفِ امتیاز</h4>
+      <ul>
+        <li><b>قراردادِ ۵۷٪:</b> فقط ۱۳۳/۲۳۳ فایل ID دارند؛ بخشِ Security/Performance/Reliability در نورون‌ها تک‌رقمی است.</li>
+        <li><b>دو منبعِ مسیریابی:</b> جدولِ NEURAL_ROUTING و brain/routing هم‌پوشان ولی ناهمگام — ریسکِ واگرایی.</li>
+        <li><b>منابعِ کم‌عمق:</b> ۳۶ ردیف برای جهانی به وسعتِ PG + Django + K8s + OWASP کم است؛ بسیاری از نورون‌ها بدون source-ID می‌مانند.</li>
+        <li><b>ابزارِ پرنویز:</b> اسکنِ vendor و برچسبِ «فاقد ID» روی فایل‌های پروتکل/مغز، گزارشِ validator را کم‌اثر می‌کند.</li>
+        <li><b>دامنه‌های لاغر:</b> multi-tenancy/storage/caching/infra هرکدام ۱–۳ فایل — برای تصمیمِ واقعی ناکافی.</li>
+        <li><b>حافظه‌ی اپیزودیکِ خالی:</b> ADR و research/index عملا بذر هستند؛ حلقه‌ی یادگیریِ بسته‌شده دیده نشد.</li>
+        <li><b>DXِ شیب‌دار:</b> فقدانِ Quick Startِ ۱۰دقیقه‌ای، نمونه‌ی CI، و بسته‌بندیِ چندعاملی.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- evidence of run -->
+  <section class="section">
+    <div class="card">
+      <h3><i style="background:rgba(16,185,129,.15);color:#6ee7b7">◔</i> ردِ شواهدِ اجرایِ ابزارها — آنچه واقعا اندازه گرفتیم</h3>
+      <p class="lead">سه ابزارِ داخلِ <code>tools/</code> روی همین نسخه اجرا و نتایجِ خامِ آن‌ها در این گزارش بازتاب شد — نه تخمینِ ذهنی.</p>
+      <div class="grid3">
+        <div class="kpi" style="flex-direction:column;align-items:flex-start"><span style="font-weight:700;color:#cbd5e1">validate_neurons.py</span><div class="code-block" style="width:100%;margin-top:8px">Validated files: 262<br>With light contract (ID+Type): 148 / 262<br>WARN: ~114 فایل بدون ID/Type<br><small style="color:var(--dim)">با vendor: 262 — بدون vendor: 233</small></div><small>سیگنال: قراردادِ سبک رعایت نشده؛ بخشِ زیادی WARN کاذب (فایل‌های protocol/brain نباید ID دار باشند) ولی ۵۷٪ واقعی هم پایین است.</small></div>
+        <div class="kpi" style="flex-direction:column;align-items:flex-start"><span style="font-weight:700;color:#cbd5e1">check_links.py</span><div class="code-block" style="width:100%;margin-top:8px">RESOLVED: relative=0 root=4 basename=49<br>199 broken — همه در .mimocode/node_modules<br>skill واقعی: ۰ brokenِ واقعی</div><small>سیگنال: اسکیل سالم است؛ ابزار باید vendor را ignore کند تا گزارش قابلِ اتکا شود.</small></div>
+        <div class="kpi" style="flex-direction:column;align-items:flex-start"><span style="font-weight:700;color:#cbd5e1">freshness.py (--days 400)</span><div class="code-block" style="width:100%;margin-top:8px">Evidence markers: 443 lines in 171 files<br>No stale or future-dated evidence.<br>Exit 0 — clean</div><small>سیگنال: بهداشتِ تاریخ عالی؛ سیاستِ re-verifyِ ۶ماهه رعایت شده.</small></div>
+      </div>
+      <div class="note" style="margin-top:14px"><b>جمع‌بندیِ راستی‌آزمایی:</b> اسکیل از نظرِ «تازگیِ شواهد و سلامتِ لینک‌ها» در وضعیتِ سبز است؛ از نظرِ «انطباقِ قراردادی» در وضعیتِ زردِ قابلِ جبران — و ریشه‌ی زردی، تعریفِ دامنه‌ی اسکنِ ابزارهاست نه کیفیتِ دانش.</div>
+    </div>
+  </section>
+
+  <!-- critical recommendations P0 -->
+  <section class="section">
+    <div class="card">
+      <h3><i style="background:rgba(244,63,94,.15);color:#fda4af">!</i> پیشنهادهای ارتقای دقت و کیفیت — اولویت‌بندی‌شده</h3>
+      <p class="lead">پیشنهادها به سه سطحِ P0 (مسدودکننده‌ی جهش به ۹۰) / P1 (اهرمِ بزرگ) / P2 (پرداختِ نهایی) تقسیم شده‌اند. هر مورد: «مسئله → اثر بر دقت → اقدامِ دقیق با فایل:خط».</p>
+
+      <div class="rec-card p0">
+        <h4><span class="pill p-crit">P0 — بحرانی</span> ترمیمِ قراردادِ نورون: از ۵۷٪ به ‎≥۹۰٪</h4>
+        <p>دقتِ اسکیل زمانی فرو می‌ریزد که نورونِ «بدونِ بخشِ Security/Performance/Reliability» به‌عنوانِ مرجعِ تصمیم فعال شود. امروز فقط ۷٪ نورون‌ها بخشِ Performance دارند.</p>
+        <ul>
+          <li>اسکریپتِ <code>tools/validate_neurons.py:32</code> را اصلاح کنید: <code>EXEMPT</code> را به <code>{ "BRAIN.md", "NEURAL_ROUTING.md", "*.md(root protocol)" } + brain/*.md</code> گسترش دهید و <code>.mimocode/</code> را کلا skip کنید.</li>
+          <li>یک <b>neural fixer checklist</b> بسازید: برای ۱۰۰ نورونِ فاقدِ بخش‌های ۵گانه، قالبِ خالیِ Security/Performance/Reliability/Failure Modes/Anti-Patterns را تزریق کنید (حتی ۳ خطِ «not applicable + why»).</li>
+          <li>هفته‌ی اول: دامنه‌های بحرانی <code>databases/ · api/ · security/ · django/</code> را به ۱۰۰٪ برسانید؛ بقیه در اسپرینتِ دوم.</li>
+        </ul>
+        <div class="code-block">EXEMPT_PROTOCOLS = {"BRAIN.md","NEURAL_ROUTING.md","EVIDENCE_PROTOCOL.md","DECISION_ENGINE.md","SECURITY_GUARDIAN.md","SIMPLICITY_GOVERNOR.md","PERFORMANCE_ENGINE.md","RELIABILITY_ENGINE.md","ARCHITECTURE_LINTER.md","VALIDATION_PROTOCOL.md","NEURON_PROTOCOL.md","CODE_TIERS.md","ARCHITECTURE_GENOME.md","LEARNING_SYSTEM.md","MEMORY_PROTOCOL.md","RESEARCH_PROTOCOL.md","adr.md"}
+SKIP_DIRS = {".mimocode",".git","node_modules","benchmarks/tasks"}
+# + تفکیکِ ROOT neurons: آن‌ها Type=root دارند، نه discipline — validator باید بپذیرد</div>
+      </div>
+
+      <div class="rec-card p0">
+        <h4><span class="pill p-crit">P0 — بحرانی</span> بسطِ رجیستریِ منابع از ۳۶ به ‎≥۸۰ ردیفِ قابلِ کلیک</h4>
+        <p>قانونِ «VERIFIED بدون source-ID تخلف است» عالی است اما وقتی رجیستری لاغر باشد، نویسنده‌ی نورون ناچار به «SUPPORTED بدونِ ارجاع» می‌لغزد — و دقتِ قابلِ راستی‌آزمایی افت می‌کند.</p>
+        <ul>
+          <li><code>research/sources.md:10</code> را به سه بخش تقسیم کنید: <b>Runtime</b> (Python/Django/DRF) · <b>Data</b> (PG/psycopg/pgvector/Redis) · <b>Platform & Security</b> (K8s/Docker/OWASP/NIST/RFC).</li>
+          <li>برای هر دامنه‌ی لاغر، حداقل ۴ منبعِ رسمی اضافه کنید: مثلا <code>S-040: Django security releases</code>، <code>S-041: PostgreSQL release notes 18</code>، <code>S-042: Redis 8 GA blog + docs</code>، <code>S-043: OTel Python SDK</code>.</li>
+          <li>هر نورونِ دارای «VERIFIED» را مجبور کنید دقیقا یک <code>source-S-XXX</code> + تاریخِ دسترسی داشته باشد — این را در <code>validate_neurons.py</code> به‌عنوانِ قانونِ سخت اضافه کنید.</li>
+        </ul>
+      </div>
+
+      <div class="rec-card p0">
+        <h4><span class="pill p-crit">P0 — بحرانی</span> یکسان‌سازیِ مسیریابی: یک منبعِ حقیقت</h4>
+        <p><code>NEURAL_ROUTING.md</code> (۱۹ سطر جدول) و <code>brain/routing.md</code> (۳۳ سطر) دو نگاشتِ مشابه ولی ناهمگام هستند — مثلا «sharding» فقط در سادگی‌حاکم آمده، «vector» فقط در brain/routing.</p>
+        <ul>
+          <li><code>NEURAL_ROUTING.md</code> را «سندِ انسانیِ خلاصه» نگه دارید و <code>brain/routing.md</code> را «جدولِ ماشینیِ مرجع» کنید؛ اولی فقط به دومی ارجاع دهد.</li>
+          <li>یک تستِ <code>tools/check_routing_parity.py</code> بسازید که هر کلیدواژه را در هردو فایل مقایسه کند و واگرایی را fail کند.</li>
+        </ul>
+      </div>
+
+      <div class="rec-card p1">
+        <h4><span class="pill p-high">P1 — اهرم بزرگ</span> تفکیکِ <code>executable</code> vs <code>illustrative</code> در Code Tiers</h4>
+        <p>امروز ۱۷ نورون Code Tiers دارند اما برچسبِ <code>&lt;!-- executable --&gt;</code> / <code>illustrative</code> (تعریف‌شده در CODE_TIERS.md:90) در هیچ اسنیپتی دیده نشد — عامل نمی‌فهمد کدام API را می‌تواند اجرا کند.</p>
+        <ul>
+          <li>در هر tier، بالایِ fence بنویسید: <code>```python &lt;!-- executable --&gt;</code> یا <code>&lt;!-- illustrative --&gt;</code> + کامنتِ «verify: psycopg 3.x / Django 5.2».</li>
+          <li>نمونه‌ی مرجع: <code>django/orm.md:34</code> را به ۴ فنسِ برچسب‌دار + یک تستِ <code>assertNumQueries</code> ارتقا دهید — الگو برای ۳۰ نورونِ دیگر.</li>
+        </ul>
+      </div>
+
+      <div class="rec-card p1">
+        <h4><span class="pill p-high">P1 — اهرم بزرگ</span> پرکردنِ دامنه‌های لاغر (۱۰ نورونِ هدفمند)</h4>
+        <p>برای «قابلیتِ تصمیمِ واقعی» این ۱۰ نورون بیشترین اهرم را دارند:</p>
+        <ul>
+          <li><code>multi-tenancy/row-vs-schema-vs-db.md</code> — ماتریسِ هزینه/ایزوله + تصمیمِ RLS vs app-enforced (ارجاع به testing/contract).</li>
+          <li><code>storage/signed-urls-and-lifecycle.md</code> — S3 presigned + retention + تشتِ عمومی‌نبودن.</li>
+          <li><code>caching/redis-ops.md</code> — Redis 8 ACL + eviction + I/O threading (مکملِ strategies/invalidation).</li>
+          <li><code>observability/otel-django.md</code> — OTel Python SDKِ اجرایی (trace + metrics + baggage) با داشبوردِ نمونه.</li>
+          <li><code>infrastructure/k8s-hardening.md</code> — PodSecurity + NetworkPolicy + secret rotation (پلِ missing بین infra و security).</li>
+          <li><code>distributed-systems/outbox-vs-saga-decision.md</code> — درختِ تصمیم با ۳ سناریوی پرداخت.</li>
+          <li><code>databases/postgresql/partitioning-vs-sharding.md</code> — آستانه‌های عددی (۱۰M/100M سطر) با EXPLAIN.</li>
+          <li><code>security/secrets-rotation.md</code> — vault + کلیدِ چرخشی + اسکنِ CI (گمشده بین secrets.md و checklists).</li>
+          <li><code>reliability/backup-drill.md</code> — runbookِ restore drillِ ماهانه با چک‌لیستِ RPO/RTO.</li>
+          <li><code>ai-backends/guardrails.md</code> — prompt injection + PII scrubbing + eval harness.</li>
+        </ul>
+      </div>
+
+      <div class="rec-card p1">
+        <h4><span class="pill p-high">P1 — اهرم بزرگ</span> CIِ سبکِ اسکیل (بدونِ ابزارِ سنگین)</h4>
+        <ul>
+          <li>فایلِ <code>.github/workflows/skill-ci.yml</code> با ۳ جاب: <code>validate_neurons --max-warnings 0</code> · <code>check_links --strict</code> · <code>freshness --days 400</code> (هر PR fail کند اگر vendor اسکن شود).</li>
+          <li>یک جابِ چهارم: <code>python tools/check_routing_parity.py</code> (پیشنهادِ P0).</li>
+          <li>badgeِ «Skill CI: passing» در README — سیگنالِ اعتماد برای مصرف‌کننده‌ی اسکیل.</li>
+        </ul>
+        <div class="code-block">name: skill-ci
+on: [push, pull_request]
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: python tools/validate_neurons.py --max-warnings 0
+      - run: python tools/check_links.py --strict
+      - run: python tools/freshness.py --days 400</div>
+      </div>
+
+      <div class="rec-card p2">
+        <h4><span class="pill p-med">P2 — پرداخت نهایی</span> DX: مسیرِ «۱۰ دقیقه تا اولین تصمیم»</h4>
+        <ul>
+          <li>در README یک بخشِ <b>Quick Start — 3 steps</b> اضافه کنید: (۱) کپیِ SKILL.md به کانتکستِ عامل، (۲) یک پرسشِ نمونه («طراحیِ APIِ پرداخت با idempotency»)، (۳) خروجیِ موردِ انتظار (reasoning trace + tiers).</li>
+          <li>پوشه‌ی <code>examples/</code> با ۳ تصمیمِ آماده‌ی ADR (cache, outbox, RLS) + genomeِ قبل/بعد.</li>
+          <li>بسته‌بندیِ <code>agents/</code> را از <code>openai.yaml</code> به <code>claude.md / cursor.md / mimocode.md</code> تعمیم دهید.</li>
+        </ul>
+      </div>
+
+      <div class="rec-card p2">
+        <h4><span class="pill p-med">P2 — پرداخت نهایی</span> بستنِ حلقه‌ی یادگیری: از ADRِ خالی به ADRِ زنده</h4>
+        <ul>
+          <li><code>adr/template.md</code> را به <code>adr/ADR-001: cache-strategy-catalog.md</code> (نمونه‌ی واقعی) تبدیل کنید و در <code>adr.md:22</code> ایندکس را پر کنید.</li>
+          <li><code>research/index.md</code> را به «گزارشِ فصلیِ re-verify» بدل کنید: هر فصل ۱۰ نورونِ fast-moving را بازبینی و تاریخِ Last Verified را bump کنید.</li>
+          <li>یک <b>Benchmark Report</b> (۳۲ تسکِ موجود در <code>benchmarks/tasks/</code>) را یک‌بار با یک مدلِ واقعی اجرا و در <code>benchmarks/report.md</code> منتشر کنید — حتی اگر upliftِ +۱۵ را نگیرد، خودِ گزارش اعتماد می‌آورد.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- deep dives -->
+  <section class="section grid2">
+    <div class="card">
+      <h3><i style="background:rgba(129,140,248,.15);color:#a78bfa">⬢</i> کالبدشکافیِ لایه‌ی مغز (BRAIN)</h3>
+      <p class="lead">طراحیِ <code>BRAIN.md:24</code> با ۱۸ گامِ «ادراک → اعتبارسنجی» یکی از کامل‌ترین pipelineهای تصمیمِ اسکیل‌های دانشی است. «۱۰ قانونِ تخطی‌ناپذیر» و «نقش‌های ۹گانه‌ی خبره» به عامل، چارچوبِ استدلالِ چندعاملیِ سبک می‌دهند بدونِ اینکه هزینه‌ی ارکستریشنِ واقعی تحمیل شود.</p>
+      <div class="note"><b>نقطه‌ی ظریف:</b> بندِ «Influence, never command» (BRAIN.md:118) شاهکار است — مانعِ تبدیلِ اسکیل به «کتابِ مقدسِ تکنولوژی» می‌شود. پیشنهاد: همین بند را به‌صورتِ یک <b>lint rule ARCH036: «no must/always without context»</b> درآورید تا حتی متنِ نورون‌ها هم نتوانند تجویزِ مطلق کنند.</div>
+      <div class="table-wrap" style="margin-top:12px"><table><thead><tr><th>زیرلایه</th><th>وضعیت</th><th>یادداشت</th></tr></thead><tbody>
+        <tr><td>cognitive pipeline</td><td><span class="pill p-low">عالی</span></td><td>۱۸ گام، بدونِ شاخه‌ی زائد</td></tr>
+        <tr><td>attention budget (۲+۴)</td><td><span class="pill p-low">عالی</span></td><td>صرفه‌جوییِ کانتکستِ اثبات‌شده</td></tr>
+        <tr><td>graph/causal/failure</td><td><span class="pill p-med">خوب</span></td><td>متنِ غنی ولی بدونِ نسخه‌ی ماشینیِ قابلِ پارس</td></tr>
+        <tr><td>confidence propagation</td><td><span class="pill p-med">خوب</span></td><td>قانونِ «conservative chaining» درست؛ نیاز به مثالِ عددی</td></tr>
+      </tbody></table></div>
+    </div>
+    <div class="card">
+      <h3><i style="background:rgba(16,185,129,.15);color:#6ee7b7">⬣</i> کالبدشکافیِ لایه‌ی دانش (NEURON)</h3>
+      <p class="lead">قراردادِ <code>NEURON_PROTOCOL.md:9</code> با ۲۴ بندِ اجباری، جاه‌طلبانه و درست است — اما همین جاه‌طلبی باعثِ «تورمِ قرارداد» شده: نویسنده برای یک نورونِ ساده (مثلا rate-limiting) باید ۱۵ بخشِ اجباری پر کند و ترجیح می‌دهد خالی بگذارد.</p>
+      <div class="note warn"><b>پیشنهادِ دقت:</b> قرارداد را به دو سطح تقسیم کنید — <b>Core (۱۰ بندِ همیشه‌اجباری)</b> شاملِ Identity/Purpose/Activation/Decision Rules/Trade-offs/Evidence و <b>Extended (۸ بندِ شرطی)</b> که فقط برای نورون‌هایِ <code>Type=technology|pattern</code> اجباری است (Security/Performance/Reliability/Observability). این‌گونه «زردِ کاذب» از بین می‌رود و «زردِ واقعی» می‌ماند.</div>
+      <div class="code-block" style="margin-top:12px"># پیشنهادِ gate دو-سطحی
+CORE = ["ID","Purpose","Activation","Decision Rules","Trade-offs","Evidence","Confidence"]
+EXTENDED = ["Security","Performance","Reliability","Observability","Failure Modes"]
+# ROOT neurons: فقط CORE + Routing Rules
+# Concept neurons: CORE
+# Technology/Pattern neurons: CORE + EXTENDED</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="card">
+      <h3><i style="background:rgba(245,158,11,.15);color:#fcd34d">⟐</i> نقشه‌ی راهِ ۳۰–۶۰–۹۰ روزه برای جهش از ۷۸ به ‎≥۹۲</h3>
+      <div class="timeline">
+        <div class="tl-item"><h4>۳۰ روز — بهداشت و اعتماد <span class="tag">P0</span><span class="tag">امتیازِ هدف ۸۴</span></h4><p>فیکسِ ابزارها (skip vendor + exempt protocols) · بسطِ sources به ۶۰ ردیف · یکسان‌سازیِ routing · تکمیلِ بخش‌های ۵گانه برای ۴ دامنه‌ی بحرانی. خروجی: گزارشِ validator برای اولین‌بار سبزِ واقعی.</p></div>
+        <div class="tl-item"><h4>۶۰ روز — عمقِ دانش <span class="tag">P1</span><span class="tag">امتیازِ هدف ۸۹</span></h4><p>۱۰ نورونِ هدفمندِ P1 · برچسب‌گذاریِ اجراییِ Code Tiers · CIِ اسکیل + badge · اولین ADRِ واقعی + اولین re-verifyِ فصلی. خروجی: اسکیل از «دانشنامه» به «مرجعِ تصمیمِ قابلِ استناد».</p></div>
+        <div class="tl-item"><h4>۹۰ روز — اثباتِ اثر <span class="tag">P2</span><span class="tag">امتیازِ هدف ‎≥۹۲</span></h4><p>اجرایِ ۳۲ تسکِ SkillBench با گزارشِ uplift · مثال‌هایِ <code>examples/</code> · بسته‌بندیِ چندعاملی · انتشارِ نسخه‌ی 2.1 با changelog. خروجی: «اسکیلِ اعتبارسنجی‌شده» (validated).</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section grid2">
+    <div class="card">
+      <h3><i style="background:rgba(56,189,248,.15);color:#7dd3fc">≡</i> چک‌لیستِ نهاییِ قبلِ انتشارِ 2.1</h3>
+      <ul style="list-style:none;padding:0">
+        <li style="font-size:12px;padding:7px 0;border-bottom:1px solid #162340;display:flex;gap:8px"><input type="checkbox" disabled> <span><code>validate_neurons --max-warnings 0</code> سبز (بدونِ vendor)</span></li>
+        <li style="font-size:12px;padding:7px 0;border-bottom:1px solid #162340;display:flex;gap:8px"><input type="checkbox" disabled> <span><code>check_links --strict</code> بدونِ broken/ambiguous</span></li>
+        <li style="font-size:12px;padding:7px 0;border-bottom:1px solid #162340;display:flex;gap:8px"><input type="checkbox" disabled> <span><code>freshness --days 400</code> بدونِ stale</span></li>
+        <li style="font-size:12px;padding:7px 0;border-bottom:1px solid #162340;display:flex;gap:8px"><input type="checkbox" disabled> <span>همه‌ی نورون‌هایِ technology دارایِ Security/Performance/Reliability</span></li>
+        <li style="font-size:12px;padding:7px 0;border-bottom:1px solid #162340;display:flex;gap:8px"><input type="checkbox" disabled> <span>هر claimِ VERIFIED دارایِ <code>source-S-XXX</code> + تاریخ</span></li>
+        <li style="font-size:12px;padding:7px 0;border-bottom:1px solid #162340;display:flex;gap:8px"><input type="checkbox" disabled> <span>Code Tiers برچسبِ executable/illustrative دارند</span></li>
+        <li style="font-size:12px;padding:7px 0;border-bottom:1px solid #162340;display:flex;gap:8px"><input type="checkbox" disabled> <span>یک ADRِ واقعی + یک re-verifyِ فصلی ثبت شده</span></li>
+        <li style="font-size:12px;padding:7px 0;display:flex;gap:8px"><input type="checkbox" disabled> <span>SkillBench report منتشر شده (حتی اگر زیرِ آستانه)</span></li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3><i style="background:rgba(129,140,248,.15);color:#a78bfa">✦</i> جمع‌بندیِ داوری</h3>
+      <p style="font-size:13px;color:#cbd5e1;line-height:1.9">این اسکیل از معدود اسکیل‌های دانشی است که «معماریِ فکر» را از «انبارِ متن» جدا می‌کند. اگر اسکیل‌های معمولی یک کتابخانه‌اند، این یکی یک <b>سیستمِ عصبی</b> است — با مسیریابی، بودجه‌ی توجه، مهارِ پیچیدگی، و لنزِ امنیتیِ همیشه‌روشن. سقفِ فعلی (۷۸) نه به‌خاطرِ ضعفِ ایده، بلکه به‌خاطرِ <b>فاصله‌ی اجرا تا قرارداد</b> است؛ فاصله‌ای که با ۳ اقدامِ P0 در ۳۰ روز به‌طورِ کامل قابلِ بستن است. پس از آن، جهش به ‎≥۹۰ نه آرزو، بلکه حسابِ سرِ انگشتی است.</p>
+      <div class="note" style="margin-top:14px"><b>توصیه‌ی نهایی:</b> این اسکیل را «منتشر و مرجع» کنید — اما قبلِ برچسبِ <i>validated</i>، سه P0 را ببندید و یک گزارشِ SkillBenchِ واقعی ضمیمه کنید. آن‌گاه می‌توانید با اطمینان بگویید: «هر تصمیمِ بک‌اند با این اسکیل، هم ساده‌ترینِ ممکن است، هم امن، هم قابلِ اندازه‌گیری، و هم قابلِ راستی‌آزمایی.»</div>
+      <div class="legend" style="margin-top:14px">
+        <span><i class="dot" style="background:#10b981"></i> سبز: عالی</span>
+        <span><i class="dot" style="background:#38bdf8"></i> آبی: خوب</span>
+        <span><i class="dot" style="background:#f59e0b"></i> زرد: نیازمندِ بهبود</span>
+        <span><i class="dot" style="background:#f43f5e"></i> قرمز: بحرانی</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="card" style="background:linear-gradient(135deg, rgba(56,189,248,.06), rgba(129,140,248,.06));">
+      <h3 style="margin-bottom:4px">پیوست — آمارِ خامِ اسکیل (برای راستی‌آزماییِ گزارش)</h3>
+      <p class="lead" style="margin-bottom:10px">این اعداد با اسکریپت‌هایِ محلی روی همین نسخه تولید شدند و قابلِ بازتولیدند.</p>
+      <div class="table-wrap"><table><thead><tr><th>شاخص</th><th>مقدار</th><th>منبع</th></tr></thead><tbody>
+        <tr><td>کلِ فایل‌هایِ MD (بدونِ vendor)</td><td>۲۳۳</td><td><code>rglob *.md excl .mimocode</code></td></tr>
+        <tr><td>دارایِ Identity (ID)</td><td>۱۳۳ (۵۷٫۱٪)</td><td>grep “- ID:”</td></tr>
+        <tr><td>دارایِ Evidence section</td><td>۱۴۶ (۶۲٫۷٪)</td><td>grep “## Evidence”</td></tr>
+        <tr><td>دارایِ Code Tiers</td><td>۱۷</td><td>grep “Code Tiers”</td></tr>
+        <tr><td>Security section</td><td>۶۱ (۲۶٪)</td><td>grep “## Security”</td></tr>
+        <tr><td>Performance section</td><td>۱۷ (۷٪)</td><td>grep “## Performance”</td></tr>
+        <tr><td>Reliability section</td><td>۱۷ (۷٪)</td><td>grep “## Reliability”</td></tr>
+        <tr><td>Failure Modes</td><td>۲۴ (۱۰٪)</td><td>grep “## Failure Modes”</td></tr>
+        <tr><td>Anti-Patterns</td><td>۳ (۱٪)</td><td>grep “## Anti-Patterns”</td></tr>
+        <tr><td>Last Verified markers</td><td>۱۵ فایل</td><td>grep “Last Verified”</td></tr>
+        <tr><td>Evidence markers (کل)</td><td>۴۴۳ خط در ۱۷۱ فایل</td><td><code>freshness.py</code></td></tr>
+        <tr><td>منابعِ ثبت‌شده</td><td>۳۶ ردیف (S-001…S-036)</td><td><code>research/sources.md</code></td></tr>
+        <tr><td>قوانینِ Linter</td><td>۳۵ (ARCH001–035)</td><td><code>ARCHITECTURE_LINTER.md</code></td></tr>
+        <tr><td>Playbooks / Checklists</td><td>۱۶ / ۴</td><td><code>playbooks/ + checklists/</code></td></tr>
+        <tr><td>بنچمارک</td><td>۳۳ تسک (۳۲ تسک + README)</td><td><code>benchmarks/</code></td></tr>
+      </tbody></table></div>
+      <p style="font-size:11px;color:var(--dim);margin-top:10px">تاریخِ گزارش: ۲۷ آگوست ۲۰۲۶ · نسخه‌ی اسکیل: v2 (BRAIN Last Verified: 2026-08) · ابزارها با Python 3.12 اجرا شدند · فایلِ گزارش: <code>raport/report.html</code></p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div>تهیه‌شده توسط Muse Spark — نقدِ مستقلِ اسکیلِ Backend Architect Neural v2</div>
+    <div style="margin-top:6px">© 2026 Mobin Hasanghasemi · MIT License · <span class="chip"> raporte / report.html</span></div>
+  </footer>
+</div>
+
+<script>
+const radarCtx = document.getElementById('radar').getContext('2d');
+new Chart(radarCtx, {
+  type: 'radar',
+  data: {
+    labels: ['معماری','انجین‌ها','شواهد','پوشش','حافظه','ابزار','عملیات','DX'],
+    datasets: [
+      {label:'اسکیل فعلی', data:[94,90,74,71,68,82,85,66], backgroundColor:'rgba(56,189,248,.14)', borderColor:'#38bdf8', pointBackgroundColor:'#38bdf8', borderWidth:2},
+      {label:'هدف ۹۲ (مرجع)', data:[92,92,92,92,92,92,92,92], backgroundColor:'rgba(129,140,248,.06)', borderColor:'rgba(129,140,248,.45)', borderDash:[6,4], pointRadius:0, borderWidth:1.5}
+    ]
+  },
+  options:{
+    responsive:true,
+    scales:{
+      r:{
+        min:0,max:100,ticks:{stepSize:20, backdropColor:'transparent', color:'#64748b', font:{size:10}},
+        grid:{color:'rgba(30,46,79,.7)'}, angleLines:{color:'rgba(30,46,79,.6)'},
+        pointLabels:{color:'#94a3b8', font:{size:11, family:'Vazirmatn'}}
+      }
+    },
+    plugins:{legend:{labels:{color:'#94a3b8',font:{family:'Vazirmatn',size:11}, boxWidth:12, usePointStyle:true}, position:'bottom'}}
+  }
+});
+const barCtx = document.getElementById('contractBar').getContext('2d');
+new Chart(barCtx, {
+  type:'bar',
+  data:{
+    labels:['ID/Type','Evidence','Security','Performance','Reliability','Failure','Anti-Patterns','Code Tiers'],
+    datasets:[{label:'درصد انطباق', data:[57,63,26,7,7,10,1,7], backgroundColor:['#38bdf8','#38bdf8','#f59e0b','#f43f5e','#f43f5e','#f43f5e','#f43f5e','#f43f5e'], borderRadius:8, barThickness:18}]
+  },
+  options:{
+    indexAxis:'y',
+    responsive:true,
+    scales:{
+      x:{min:0,max:100, grid:{color:'rgba(30,46,79,.5)'}, ticks:{color:'#64748b', callback:v=>v+'%'}},
+      y:{grid:{display:false}, ticks:{color:'#cbd5e1', font:{family:'Vazirmatn', size:11}}}
+    },
+    plugins:{legend:{display:false}, tooltip:{callbacks:{label:c=> c.parsed.x + '%'}}}
+  }
+});
+</script>
+</body>
+</html>

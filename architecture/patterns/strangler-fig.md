@@ -1,6 +1,7 @@
 # Strangler Fig Pattern
 
 ## Identity
+- ID: architecture.patterns.strangler-fig
 - **ID**: architecture.patterns.strangler-fig
 - Type: pattern/migration
 - Status: active — high value for legacy

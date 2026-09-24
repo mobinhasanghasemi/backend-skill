@@ -1,0 +1,23 @@
+name: skill-ci
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  integrity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate neurons
+        run: python tools/validate_neurons.py --max-warnings 0
+      - name: Check links (strict)
+        run: python tools/check_links.py --strict
+      - name: Freshness gate
+        run: python tools/freshness.py --days 400
+      - name: Routing parity
+        run: python tools/check_routing_parity.py

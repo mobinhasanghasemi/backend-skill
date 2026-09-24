@@ -1,5 +1,11 @@
 # Capacity Planning (rough math before architecture)
 
+## Identity
+- ID: architecture.system-design.capacity-planning
+- Type: procedure
+- Status: active
+- Importance: medium
+
 ## Purpose
 Produce order-of-magnitude numbers that distinguish "fine on one box" from "needs real scale out" — so the design isn't guessing.
 

@@ -1,6 +1,10 @@
 # Big-Bang Rewrite
 
 ## Identity
+- ID: architecture.anti-patterns.big-bang-rewrite
+- Type: anti-pattern
+- Status: active
+- Importance: medium
 - Severity: HIGH
 
 ## Definition

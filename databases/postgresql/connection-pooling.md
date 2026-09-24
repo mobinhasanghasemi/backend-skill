@@ -74,5 +74,13 @@ PgBouncer (transaction mode) in front: pool=100→ app pools of ~10
 ## Observability
 - pool depth gauges, wait queue ms, timeouts; server: pg_stat_activity counts by state (active/idle-in-tx)
 
+## Performance
+- Measure first: EXPLAIN (ANALYZE, BUFFERS) for query shape; pg_stat_statements for hot queries (S-044/S-047). No index/cache without measurement per PERFORMANCE_ENGINE.
+- p95/p99 before/after; one change at a time.
+
+## Reliability
+- Timeouts on DB/client, retry with jitter + idempotency, backup/PITR tested monthly (S-046), RPO/RTO defined.
+- Failure: pool exhaustion -> shed load, replica lag -> read-your-writes check.
+
 ## Evidence
 PostgreSQL docs (max_connections), PgBouncer docs (VERIFIED); sizing numbers are context-dependent (SUPPORTED)

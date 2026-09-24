@@ -1,6 +1,10 @@
 # Design Review
 
 ## Identity / Purpose
+- ID: architecture.system-design.design-review
+- Type: procedure
+- Status: active
+- Importance: medium
 The structured review the brain runs on any produced architecture. Combines the Genome, the LINTER, and checklists.
 
 ## Process (in order)

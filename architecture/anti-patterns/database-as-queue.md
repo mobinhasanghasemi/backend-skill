@@ -1,6 +1,9 @@
 # Database as a Queue
 
 ## Identity
+- Type: anti-pattern
+- Status: active
+- Importance: medium
 - ID: architecture.anti-patterns.database-as-queue (database-as-service)
 - Severity: HIGH
 

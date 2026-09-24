@@ -1,6 +1,9 @@
 # Deep Synchronous Chains
 
 ## Identity
+- Type: anti-pattern
+- Status: active
+- Importance: medium
 - ID: architecture.anti-patterns.sync-chains
 - Severity: HIGH
 

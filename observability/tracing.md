@@ -59,5 +59,19 @@ with tracer.start_as_current_span("db.query") as span:
 - traces only entry points (inner work hidden)
 - too-heavy overhead — overhead measurement required at scale
 
+## Code Tiers
+<!-- executable -->
+### ❌ Bad
+```python  <!-- illustrative -->
+logger.info(f"request {user} {order}")  # no trace_id, PII
+```
+<!-- executable -->
+### ✅ Good
+```python
+with tracer.start_as_current_span("order.create") as s:
+    s.set_attribute("tenant.id", tenant_id)
+    logger.info("order.create", extra={"trace_id": format(s.get_span_context().trace_id)})
+```
+
 ## Evidence
 - OpenTelemetry spec + "Distributed Systems Observability" (VERIFIED); Jaeger/Tempo docs

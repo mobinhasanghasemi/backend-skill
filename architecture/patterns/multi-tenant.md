@@ -1,6 +1,8 @@
 # Multi-Tenant Architecture
 
 ## Identity
+- Type: pattern
+- Importance: medium
 - ID: architecture.patterns.multi-tenant
 - Domain: multi-tenancy (detailed neuron there)
 - Status: active

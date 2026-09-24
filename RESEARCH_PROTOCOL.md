@@ -1,5 +1,6 @@
 # RESEARCH PROTOCOL
 
+
 The brain's **deep-learning discipline**. Before ANY substantial claim enters the knowledge base, it must pass through research. This file defines the workflow, the source hierarchy, contradiction handling, and the research quality gate.
 
 ---

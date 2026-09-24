@@ -1,5 +1,6 @@
 # ARCHITECTURE GENOME
 
+
 A compact, comparable representation of an architecture. Enables before/after comparison, alternative evaluation, and progression tracking.
 
 ## Genome fields

@@ -1,5 +1,6 @@
 # RELIABILITY ENGINE
 
+
 Availability, durability, resilience, failure propagation, and recovery. Reliability is engineered, not observed — every neuron's Reliability section must define behavior under failure, not just success.
 
 ## Core equations

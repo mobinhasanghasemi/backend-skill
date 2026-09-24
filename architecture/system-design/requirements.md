@@ -1,6 +1,10 @@
 # Requirements as a design input
 
 ## Identity / Purpose
+- ID: architecture.system-design.requirements
+- Type: procedure
+- Status: active
+- Importance: medium
 Convert the user's need into a bounds declaration the architecture can test.
 
 ## Categories

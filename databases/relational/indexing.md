@@ -79,5 +79,13 @@ CREATE INDEX idx_orders_user_created_cov
 - EXPLAIN (ANALYZE, BUFFERS) is the single proof tool
 - unused-index reports (pg_stat_*)
 
+## Performance
+- Measure first: EXPLAIN (ANALYZE, BUFFERS) for query shape; pg_stat_statements for hot queries (S-044/S-047). No index/cache without measurement per PERFORMANCE_ENGINE.
+- p95/p99 before/after; one change at a time.
+
+## Reliability
+- Timeouts on DB/client, retry with jitter + idempotency, backup/PITR tested monthly (S-046), RPO/RTO defined.
+- Failure: pool exhaustion -> shed load, replica lag -> read-your-writes check.
+
 ## Evidence
 - PostgreSQL index docs (VERIFIED); PG18 skip scan from release notes (VERIFIED)

@@ -1,5 +1,6 @@
 # ARCHITECTURE LINTER
 
+
 Machine-checkable architecture violations. When the brain produces a design, or when reviewing an existing system, run these rules. Each rule: name, trigger, why, severity, fix direction.
 
 ## Rule list
@@ -41,6 +42,7 @@ Machine-checkable architecture violations. When the brain produces a design, or 
 | ARCH033 | Logging PII/credentials | HIGH |
 | ARCH034 | Global mutable state in async context | MED |
 | ARCH035 | `SELECT *` / unbounded columns in production queries | LOW |
+| ARCH036 | Prescriptive **"must/always use X" without context** — violates Influence, never command (BRAIN.md:116) | MED |
 
 ## Severity semantics
 
